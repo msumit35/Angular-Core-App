@@ -1,0 +1,24 @@
+/* .app-drawer-content {
+    margin-top: 15px;
+}
+
+.example-container {
+    margin: 10px;
+    border: 1px solid #555;
+  }
+   */
+
+   .mat-sidenav {
+    width: 250px;
+    padding:15px;
+}
+.mat-drawer { 
+    background-color: #023075;
+    color:#fff
+}
+.main-content {
+    padding:20px;
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+}

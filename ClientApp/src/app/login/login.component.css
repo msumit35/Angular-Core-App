@@ -1,0 +1,37 @@
+
+.login-btn {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+
+  .form-field {
+    width: 30%;
+  }
+
+  .login-content {
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .card-content {
+    display: inline-block;
+    /* position: relative; */
+    width: 32%;
+    /* padding: 20px; */
+  }
+
+  .mat-form-field {
+    display: unset;
+    position: relative;
+    text-align: left;
+}
+
+.login-title {
+  text-align: left;
+  font-weight: 500;
+  font-size: larger;
+}

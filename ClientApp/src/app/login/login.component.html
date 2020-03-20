@@ -1,15 +1,29 @@
-
+<div class="login-content">
+    <mat-card class="card-content">
+        <div class="form-group login-title">Sign In!</div>
+        <hr>
 <form (submit)="onSubmit()">
 <div class="form-group">
-    <label>Username</label>
-    <input type="text" name="Username" [(ngModel)]="model.Username" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>Password</label>
-    <input type="password" name="Password" [(ngModel)]="model.Password" class="form-control">
-</div>
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username">
+        <mat-icon matSuffix>face</mat-icon>
+        <mat-hint>Hint: james35</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passowrd" name="Password" [(ngModel)]="model.Password">
+        <button type="button" class="login-btn" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        <mat-hint>Hint: example@123</mat-hint>
+      </mat-form-field>
+    </div>
 
 <button type="submit" class="btn btn-primary">Login</button>
 <a href='/register' class="btn btn-secondary">Register</a>
 </form>
+</mat-card>
+</div>

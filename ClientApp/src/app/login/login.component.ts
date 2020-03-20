@@ -5,12 +5,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit{
     model: LoginModel;
     returnUrl: string;
-
+    hide = true;
     constructor(private _authService: AuthenticateService,
                 private _router: Router,
                 private _activatedRoute: ActivatedRoute) {
