@@ -22,7 +22,12 @@ namespace Core.Webapi.Controllers
             _jwtTokenService = jwtTokenService;
         }
 
-        [AllowAnonymous]
+        [HttpGet("Test")]
+        public async Task<string> GetTestValue()
+        {
+            return "Hello World";
+        }
+
         [HttpPost("CreateToken")]
         public async Task<IActionResult> CreateToken([FromBody] AuthenticateModel authenticate)
         {
