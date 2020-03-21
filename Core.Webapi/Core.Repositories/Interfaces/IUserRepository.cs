@@ -9,5 +9,6 @@ namespace Core.Repositories.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         Task<User> GetUserByUserName(string userName);
+        Task<bool> IsUserExists(string username, string email);
     }
 }

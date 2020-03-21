@@ -9,7 +9,10 @@ using Core.Webapi.Attributes;
 using Core.Webapi.Enums;
 using Core.Webapi.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Webapi.Controllers
 {
@@ -43,17 +46,48 @@ namespace Core.Webapi.Controllers
         [HttpPost("CreateUser")]
         public async Task<IActionResult> Create([FromBody] UserModel model)
         {
-            if (model == null)
+            try
             {
-                BadRequest();
+                if (model == null || !ModelState.IsValid)
+                {
+                    var errors = new List<ModelErrorCollection>();
+                    foreach (var value in ModelState.Values)
+                    {
+                        errors.Add(value.Errors);
+                    }
+                    return StatusCode(StatusCodes.Status400BadRequest, errors);
+                }
+
+                var exist = await _unitOfWork.UserRepository.IsUserExists(model.Username, model.Email);
+
+                if (exist)
+                {
+                    return Ok(new Response
+                    {
+                        Data = null,
+                        ErrorMessage = "Username or Email already exists",
+                        Status = (int) ResponseStatus.UserNotExist
+                    });
+                }
+
+                var entity = Converter.GetUser(model);
+
+                var user = await _unitOfWork.UserRepository.Create(entity);
+                await _unitOfWork.SaveChangesAsync();
+
+                return Ok(new Response
+                {
+                    Status = (int) ResponseStatus.Success,
+                    Data = user.Id
+                });
             }
-
-            var entity = Converter.GetUser(model);
-
-            var user = await _unitOfWork.UserRepository.Create(entity);
-            await _unitOfWork.SaveChangesAsync();
-
-            return Ok(new { UserId = user.Id });
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
         }
     }
 }

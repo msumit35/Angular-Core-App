@@ -30,7 +30,7 @@ namespace Core.Webapi
 
             services.AddCors(options =>
             {
-                options.AddPolicy("MyPolicy", builder => { builder.AllowAnyOrigin().AllowAnyHeader(); });
+                options.AddPolicy("MyPolicy", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -51,10 +51,10 @@ namespace Core.Webapi
                 });
 
             //Dependencies
-            services.AddSingleton<CoreContext>();
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IExceptionLogRepository, ExceptionLogRepository>();
+            services.AddScoped<CoreContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
         }
 

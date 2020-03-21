@@ -5,6 +5,7 @@ using Core.Webapi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Core.Webapi.Enums;
 
 namespace Core.Webapi.Controllers
 {
@@ -35,16 +36,31 @@ namespace Core.Webapi.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return Ok(new Response
+                {
+                    Status = (int)ResponseStatus.UserNotExist,
+                    Data = null,
+                    ErrorMessage = "User does not exist"
+                });
             }
 
             if (Hasher.Verify(authenticate.Password, user.Password))
             {
                 var model = new UserModel(user, _jwtTokenService.GetToken(user));
-                return Ok(model);
+                return Ok(new Response
+                {
+                    Status = (int)ResponseStatus.Success,
+                    Data = model,
+                    ErrorMessage = null
+                });
             }
 
-            return Unauthorized();
+            return Ok(new Response
+            {
+                Status = (int)ResponseStatus.UsernamePasswordNotMatch,
+                Data = null,
+                ErrorMessage = "Username or password does not match"
+            });
         }
     }
 }

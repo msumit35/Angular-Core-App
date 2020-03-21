@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.DataAccessLayer;
 using Core.Entities;
@@ -47,6 +48,11 @@ namespace Core.Repositories
         {
             return await _context.Users.SingleOrDefaultAsync(x =>
                 x.UserName.ToLower().Equals(userName.ToLower()));
+        }
+
+        public async Task<bool> IsUserExists(string username, string email)
+        {
+            return  _context.Users.Any(x => x.UserName.ToLower().Equals(username.ToLower()) || x.EmailId.ToLower().Equals(email.ToLower()));
         }
     }
 }
