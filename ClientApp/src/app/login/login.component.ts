@@ -3,8 +3,6 @@ import { LoginModel } from '../models/login.model';
 import { AuthenticateService } from '../services/authenticate.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SpinnerService } from '../services/spinner.service';
-import { AlertService } from '../services/alert.service';
-import { Message } from '../models/alert-message.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,7 +18,6 @@ export class LoginComponent implements OnInit {
         private _router: Router,
         private _activatedRoute: ActivatedRoute,
         private _spinnerService: SpinnerService,
-        private _alertService: AlertService,
         private _toastrService: ToastrService) {
 
         if (this._authService.CurrentUserValue) {

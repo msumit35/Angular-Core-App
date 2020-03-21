@@ -3,11 +3,11 @@
     <div class="form-group section-title">Sign In!</div>
     <hr>
     <form #form="ngForm" (submit)="onSubmit()">
-      <app-alert></app-alert>
       <div class="form-group">
         <mat-form-field class="form-field" appearance="outline">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username" autocomplete="off"
+          <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username" 
+          autocomplete="off" autofocus
             required>
           <mat-icon matSuffix>face</mat-icon>
           <mat-hint>Hint: james35</mat-hint>

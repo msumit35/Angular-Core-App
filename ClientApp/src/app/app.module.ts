@@ -28,8 +28,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SpinnerService } from './services/spinner.service';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { AlertComponent } from './alert/alert.component';
-import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -40,8 +38,7 @@ import { AlertService } from './services/alert.service';
     NavMenuComponent,
     ToolbarComponent,
     DialogComponent,
-    SpinnerComponent,
-    AlertComponent
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -66,8 +63,7 @@ import { AlertService } from './services/alert.service';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthenticateService,
     UserService,
-    SpinnerService,
-    AlertService
+    SpinnerService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]

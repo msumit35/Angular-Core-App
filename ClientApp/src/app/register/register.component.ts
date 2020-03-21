@@ -6,8 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogModel } from '../models/dialog.model';
 import { SpinnerService } from '../services/spinner.service';
-import { AlertService } from '../services/alert.service';
-import { Message } from '../models/alert-message.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
