@@ -1,0 +1,73 @@
+
+.register-content {
+    text-align: center;
+    margin-top: 1%;
+  }
+
+  .sub-section-title {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .card-content {
+    display: inline-block;
+    /* position: relative; */
+    width: 50%;
+    /* padding: 20px; */
+  }
+
+  .form-field {
+    width: 100%;
+  }
+
+  .first-name {
+    width: 45%;
+    float: left;
+  }
+
+  .last-name {
+    width: 45%;
+    float: right;
+  }
+
+  .headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.previous-btn {
+  color: red;
+  font-weight: 500;
+}
+
+.next-btn {
+  color: indigo;
+  font-weight: 500;
+}
+
+.register-btn {
+  width: 45%;
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.cancel-btn {
+  width: 45%;
+  float: right;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.error-messages {
+  float: left;
+}

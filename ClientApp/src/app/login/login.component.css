@@ -1,11 +1,11 @@
 
-.login-btn {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
+  .login-btn {
+    width: -webkit-fill-available;
+    margin-bottom: 10px;
+  }
+
+  .register-link {
+    float: right;
   }
 
   .form-field {
@@ -28,10 +28,4 @@
     display: unset;
     position: relative;
     text-align: left;
-}
-
-.login-title {
-  text-align: left;
-  font-weight: 500;
-  font-size: larger;
 }

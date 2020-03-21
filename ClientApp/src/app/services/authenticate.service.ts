@@ -26,10 +26,13 @@ export class AuthenticateService{
 
     login(model: LoginModel) {
         return this._http.post(BaseUrl + 'Authenticate/CreateToken', model)
-                    .pipe(map((user: User) => {
-                        localStorage.setItem(this._localStorageUserKey, JSON.stringify(user));
-                        this._currentUserSubject.next(user);
-                        return user;
+                    .pipe(map((response: any) => {
+                        if(response.Status == 200) {
+                            localStorage.setItem(this._localStorageUserKey, JSON.stringify(response.Data));
+                            this._currentUserSubject.next(response.Data);
+                        }
+
+                        return response;
                     }));
     }
 

@@ -1,13 +1,26 @@
 
-<table>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Username</th>
-    <tr *ngFor="let user of users">
-        <td>{{ user.FirstName }}</td>
-        <td>{{ user.LastName }}</td>
-        <td>{{ user.Email }}</td>
-        <td>{{ user.Username }}</td>
-    </tr>
-</table>
+<mat-table [dataSource]="users">
+    <ng-container matColumnDef="FirstName">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="LastName">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Username}} </mat-cell>
+      </ng-container>
+  
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="['FirstName', 'LastName', 'Email', 'Username']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['FirstName', 'LastName', 'Email', 'Username']"></mat-row>
+  </mat-table>

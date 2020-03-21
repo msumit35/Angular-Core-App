@@ -1,28 +1,110 @@
+<div class="register-content">
+    <mat-card class="card-content">
+        <div class="form-group section-title">Sign Up!</div>
+        <hr>
+        <app-alert></app-alert>
+        <form #form="ngForm" (submit)="onSubmit()">
+            
+            <mat-accordion class="headers-align">
+                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>account_circle</mat-icon>
+                            Personal Details
+                        </mat-panel-title>
+                        <mat-panel-description>
 
-<form (submit)="onSubmit()">
-    <div class="form-group">
-        <label>First Name</label>
-        <input type="text" name="FirstName" [(ngModel)]="model.FirstName" class="form-control">
-    </div>
-    <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" name="LastName" [(ngModel)]="model.LastName" class="form-control">
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="Email" [(ngModel)]="model.Email" class="form-control">
-    </div>
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="Username" [(ngModel)]="model.Username" class="form-control">
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="Password" [(ngModel)]="model.Password" class="form-control">
-    </div>
-    <!-- <div class="form-group">
+                            Type your name and email
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="form-group">
+                        <mat-form-field class="first-name" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="First Name" name="FirstName" [(ngModel)]="model.FirstName"
+                                autocomplete="off" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="last-name" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Last Name" name="LastName" [(ngModel)]="model.LastName"
+                                autocomplete="off" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput placeholder="Email" name="Email" [(ngModel)]="model.Email"
+                                autocomplete="off" #email="ngModel" required pattern="[^ @]*@[^ @]*">
+                            <mat-icon matSuffix>email</mat-icon>
+                            <mat-hint>email@example.com</mat-hint>
+                            <mat-error *ngIf="email.errors" class="error-messages">
+                                <p *ngIf="email.errors.pattern && (email.touched || email.dirty)">Please provide valid
+                                    email address</p>
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <mat-action-row>
+                        <button class="transparent-btn next-btn" type="button" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>security</mat-icon>
+                            Security
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                            Type Username and Password
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="form-group">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username"
+                                autocomplete="off" #username="ngModel" required>
+                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-hint>Hint: james35</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passowrd" name="Password"
+                                [(ngModel)]="model.Password" autocomplete="off" #password="ngModel" required
+                                pattern="^(?=.*\d).{8,}$">
+                            <button type="button" class="transparent-btn" mat-icon-button matSuffix
+                                (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-hint>Hint: example@123</mat-hint>
+                            <mat-error *ngIf="password.errors && (password.touched || password.dirty)"
+                                class="error-messages">
+                                <p *ngIf="password.errors.pattern">
+                                    Password should be 8 characters long and must include at least one numeric digit
+                                </p>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-action-row>
+                        <button class="transparent-btn previous-btn" type="button"
+                            (click)="prevStep()">Previous</button>
+
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <!-- <div class="form-group">
         <label>Confirm Password</label>
         <input type="text" name="ConfirmPassword" [(ngModel)]="model.ConfirmPassword" class="form-control">
     </div> -->
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+            <button type="submit" class="btn btn-primary register-btn" [disabled]="!form.valid">Register</button>
+            <a href="/login" class="btn btn-danger cancel-btn">Back to Login</a>
+        </form>
+    </mat-card>
+</div>
