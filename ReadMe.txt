@@ -1,11 +1,14 @@
 Instructions
 ------------
-1. Publish database from Database project. Provide Database name: Angular-Core.
+1. This project is built on Core 2.2. Install from:
+https://dotnet.microsoft.com/download/dotnet-core
 
-2. In ClientApp, install packages:
+2. Publish database from Database project. Provide Database name: Angular-Core.
+
+3. In ClientApp, install packages:
 	--run command 'npm install'
 
-3. In Angular, change base address in global.const.ts. This will be the root url of hosted environment.
+4. In Angular, change base address in global.const.ts. This will be the root url of hosted environment.
 -----------------------------------
 
 IIS Hosting
