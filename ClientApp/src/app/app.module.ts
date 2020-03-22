@@ -23,7 +23,6 @@ import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user.service';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SpinnerService } from './services/spinner.service';
@@ -35,7 +34,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    NavMenuComponent,
     ToolbarComponent,
     DialogComponent,
     SpinnerComponent
