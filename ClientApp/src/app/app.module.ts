@@ -13,6 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { AuthenticateService } from './services/authenticate.service';
@@ -27,6 +29,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SpinnerService } from './services/spinner.service';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { PaymentService } from './services/payment.service';
+import { MobileService } from './services/mobile-recharge.service';
+import { MobileRechargeComponent } from './mobile-recharge/mobile-recharge.component';
+import { RechargeDialog } from './mobile-recharge/recharge.dialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RegisterComponent,
     ToolbarComponent,
     DialogComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MobileRechargeComponent,
+    RechargeDialog
   ],
   imports: [
     BrowserModule,
@@ -55,16 +63,20 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatRadioModule,
+    MatSelectModule,
     ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthenticateService,
     UserService,
-    SpinnerService
+    SpinnerService,
+    MobileService,
+    PaymentService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent, RechargeDialog]
   
 })
 export class AppModule { }
