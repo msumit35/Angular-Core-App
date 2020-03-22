@@ -57,9 +57,23 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Users.sql" />
     <Build Include="ExceptionLogs.sql" />
+    <Build Include="ElectricityProviders.sql" />
+    <Build Include="MobileRechargeTypes.sql" />
+    <Build Include="PaymentModes.sql" />
+    <Build Include="PaymentStatuses.sql" />
+    <Build Include="ServiceProviders.sql" />
+    <Build Include="ElectricityBills.sql" />
+    <Build Include="MobileRechargeBills.sql" />
+    <Build Include="Payments.sql" />
+    <Build Include="Link_Payments_ElectricityBills.sql" />
+    <Build Include="Link_Payments_MobileRechargeBills.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\SeedScript.sql" />
   </ItemGroup>
 </Project>

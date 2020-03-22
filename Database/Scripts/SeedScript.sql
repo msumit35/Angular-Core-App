@@ -1,0 +1,42 @@
+﻿
+--ElectricityProviders
+INSERT INTO ElectricityProviders (Id, Name)
+VALUES ('D8671FC5-C665-4E43-AB0E-18C194FFCCCB', 'Mahavitaran Ltd.')
+
+INSERT INTO ElectricityProviders (Id, Name)
+VALUES ('887342AF-5007-4429-8F4C-A518F59E4585', 'Reliance Ltd.')
+
+INSERT INTO ElectricityProviders (Id, Name)
+VALUES ('E40E58F1-8105-4775-A838-CE1F50B62E8A', 'Airtel Electricity Ltd.')
+
+--MobileRechargeTypes
+INSERT INTO MobileRechargeTypes (Id, Name)
+VALUES ('EBB30C95-D306-4565-B4F6-C38CA3DFAC8F', 'Prepaid')
+
+INSERT INTO MobileRechargeTypes (Id, Name)
+VALUES ('35AD39D1-428E-4DDA-9DA7-DF2396B8F965', 'Postpaid')
+
+--PaymentModes
+INSERT INTO PaymentModes (Id, Name)
+VALUES ('DF7D0203-444C-4131-A5F7-3076FD894C34', 'Credit/Debit Card')
+
+INSERT INTO PaymentModes (Id, Name)
+VALUES ('4914F946-84DC-4F4C-9AFE-E8EC6B74A7E8', 'UPI')
+
+--PaymentStatuses
+INSERT INTO PaymentStatuses (Id, Name)
+VALUES ('0F028152-43BB-4DCE-8F15-59CDE17C4CF9', 'Success')
+
+INSERT INTO PaymentStatuses (Id, Name)
+VALUES ('43329146-B1F5-4231-8EC9-9697A57B9921', 'Failed')
+
+--ServiceProviders
+INSERT INTO ServiceProviders (Id, Name)
+VALUES ('D11F60EB-3398-4B01-9A54-9B3DDDA301DA', 'Airtel')
+
+INSERT INTO ServiceProviders (Id, Name)
+VALUES ('78A61FF0-935D-4DE6-AD2F-66087DD17CEB', 'Vodafone')
+
+INSERT INTO ServiceProviders (Id, Name)
+VALUES ('2EAE9928-C9FC-47AE-8322-80B1CA2D586C', 'Jio')
+
