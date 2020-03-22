@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IExceptionLogRepository : ICrudRepository<ExceptionLog>
+    public interface IElectricityBillRepository : ICrudRepository<ElectricityBill>
     {
     }
 }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IRepository<T>
+    public interface IPaymentStatusRepository : IRepository<PaymentStatus>
     {
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByIdAsync(Guid id);
+        Task<PaymentStatus> GetByNameAsync(string name);
     }
 }

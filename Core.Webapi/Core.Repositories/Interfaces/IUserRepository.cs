@@ -6,7 +6,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : ICrudRepository<User>
     {
         Task<User> GetUserByUserName(string userName);
         Task<bool> IsUserExists(string username, string email);

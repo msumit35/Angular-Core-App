@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class CrudEntityBase : EntityBase
+    public abstract class CrudEntityBase : EntityBase
     {
-        public CrudEntityBase()
+        protected CrudEntityBase()
         {
             CreatedOn = DateTimeOffset.Now;
         }

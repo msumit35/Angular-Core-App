@@ -5,6 +5,7 @@ using Core.Webapi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Core.Repositories.Interfaces;
 using Core.Webapi.Enums;
 
 namespace Core.Webapi.Controllers

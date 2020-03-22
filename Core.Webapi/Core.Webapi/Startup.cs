@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using Core.Webapi.Services;
+using Core.Webapi.Services.Interfaces;
 
 namespace Core.Webapi
 {
@@ -55,6 +57,22 @@ namespace Core.Webapi
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IExceptionLogRepository, ExceptionLogRepository>();
+
+            services.AddScoped<IMobileRechargeBillRepository, MobileRechargeBillRepository>();
+            services.AddScoped<IMobileRechargeTypeRepository, MobileRechargeTypeRepository>();
+            services.AddScoped<IServiceProviderRepository, ServiceProviderRepository>();
+            services.AddScoped<IMobileRechargeService, MobileRechargeService>();
+
+            services.AddScoped<IElectricityBillRepository, ElectricityBillRepository>();
+            services.AddScoped<IElectricityProviderRepository, ElectricityProviderRepository>();
+
+            services.AddScoped<IPaymentModeRepository, PaymentModeRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
+
+            services.AddScoped<ILinkPaymentsMobileRechargeRepository, LinkPaymentsMobileRechargeRepository>();
+            services.AddScoped<ILinkPaymentsElectricityBillRepository, LinkPaymentsElectricityBillRepository>();
+
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
         }
 

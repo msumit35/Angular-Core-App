@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class EntityBase
+    public abstract class EntityBase
     {
         public Guid Id { get; set; }
 
-        public EntityBase()
+        protected EntityBase()
         {
             Id = Guid.NewGuid();
         }
