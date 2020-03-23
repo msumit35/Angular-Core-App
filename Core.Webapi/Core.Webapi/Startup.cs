@@ -61,7 +61,6 @@ namespace Core.Webapi
             services.AddScoped<IMobileRechargeBillRepository, MobileRechargeBillRepository>();
             services.AddScoped<IMobileRechargeTypeRepository, MobileRechargeTypeRepository>();
             services.AddScoped<IServiceProviderRepository, ServiceProviderRepository>();
-            services.AddScoped<IMobileRechargeService, MobileRechargeService>();
 
             services.AddScoped<IElectricityBillRepository, ElectricityBillRepository>();
             services.AddScoped<IElectricityProviderRepository, ElectricityProviderRepository>();
@@ -72,6 +71,10 @@ namespace Core.Webapi
 
             services.AddScoped<ILinkPaymentsMobileRechargeRepository, LinkPaymentsMobileRechargeRepository>();
             services.AddScoped<ILinkPaymentsElectricityBillRepository, LinkPaymentsElectricityBillRepository>();
+
+            services.AddScoped<IMobileRechargeService, MobileRechargeService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Webapi.Services.Interfaces
 {
-    public interface IElectricityService : IPaymentService
+    public interface IElectricityService : IMakePaymentService
     {
     }
 }

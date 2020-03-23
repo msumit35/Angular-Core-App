@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class ElectricityBill : CrudEntityBase
+    public class ElectricityBill : CreateEntityBase
     {
         public string ConsumerNumber { get; set; }
         public Guid ElectricityProviderId { get; set; }

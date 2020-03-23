@@ -2,9 +2,7 @@
 	[Id] [uniqueidentifier] NOT NULL,
 	[ConsumerNumber] [nvarchar](20) NOT NULL,
 	[ElectricityProviderId] [uniqueidentifier] NOT NULL,
-	[CreatedOn] [datetimeoffset](7) NOT NULL,
-	[LastUpdatedOn] [datetimeoffset](7) NULL,
-	[RemovedOn] [datetimeoffset](7) NULL,
+	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_ElectricityBills] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

@@ -35,15 +35,5 @@ namespace Core.Repositories
             var result = await _electricityBills.AddAsync(entity);
             return result.Entity;
         }
-
-        public Task Update(ElectricityBill entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(ElectricityBill entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

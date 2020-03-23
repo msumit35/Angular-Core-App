@@ -4,9 +4,7 @@
 	[PaymentStatusId] [uniqueidentifier] NOT NULL,
 	[Amount] [bigint] NOT NULL,
 	[FailureDescription] [nvarchar](250) NULL,
-	[CreatedOn] [datetimeoffset](7) NOT NULL,
-	[LastUpdatedOn] [datetimeoffset](7) NULL,
-	[RemovedOn] [datetimeoffset](7) NULL,
+	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_Payments_1] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

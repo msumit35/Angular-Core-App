@@ -8,7 +8,7 @@ using PaymentStatus = Core.Webapi.Models.PaymentStatus;
 
 namespace Core.Webapi.Services
 {
-    public class MobileRechargeService : PaymentService, IMobileRechargeService
+    public class MobileRechargeService : MakePaymentService, IMobileRechargeService
     {
         private readonly IUnitOfWork _unitOfWork;
 

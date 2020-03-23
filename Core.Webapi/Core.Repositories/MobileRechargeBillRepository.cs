@@ -19,6 +19,7 @@ namespace Core.Repositories
             _context = context;
             _mobileRechargeBills = context.MobileRechargeBills;
         }
+
         public async Task<IEnumerable<MobileRechargeBill>> GetAllAsync()
         {
             return await _mobileRechargeBills.ToListAsync();
@@ -33,16 +34,6 @@ namespace Core.Repositories
         {
             var result = await _mobileRechargeBills.AddAsync(entity);
             return result.Entity;
-        }
-
-        public Task Update(MobileRechargeBill entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(MobileRechargeBill entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

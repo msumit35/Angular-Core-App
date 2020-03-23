@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Core.Entities;
+using System.Threading.Tasks;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IPaymentRepository : ICreateRepository<Payment>
+    public interface ICreateRepository<T> : IRepository<T>
     {
+        Task<T> Create(T entity);
     }
 }

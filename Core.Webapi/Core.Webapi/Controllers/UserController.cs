@@ -7,7 +7,9 @@ using Core.Repositories;
 using Core.Repositories.Interfaces;
 using Core.Webapi.Attributes;
 using Core.Webapi.Enums;
+using Core.Webapi.Helpers;
 using Core.Webapi.Models;
+using Core.Webapi.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,17 +23,17 @@ namespace Core.Webapi.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserService _userService;
 
-        public UserController(IUnitOfWork unitOfWork)
+        public UserController(IUserService userService)
         {
-            _unitOfWork = unitOfWork;
+            _userService = userService;
         }
 
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            var users = await _userService.GetUsersAsync();
             var response = new List<UserModel>();
 
             foreach (var item in users)
@@ -50,15 +52,11 @@ namespace Core.Webapi.Controllers
             {
                 if (model == null || !ModelState.IsValid)
                 {
-                    var errors = new List<ModelErrorCollection>();
-                    foreach (var value in ModelState.Values)
-                    {
-                        errors.Add(value.Errors);
-                    }
+                    var errors = ModelStateError.GetErrors(ModelState);
                     return StatusCode(StatusCodes.Status400BadRequest, errors);
                 }
 
-                var exist = await _unitOfWork.UserRepository.IsUserExists(model.Username, model.Email);
+                var exist = await _userService.IsUserExists(model.Username, model.Email);
 
                 if (exist)
                 {
@@ -70,10 +68,7 @@ namespace Core.Webapi.Controllers
                     });
                 }
 
-                var entity = Converter.GetUser(model);
-
-                var user = await _unitOfWork.UserRepository.Create(entity);
-                await _unitOfWork.SaveChangesAsync();
+                var user = await _userService.Create(model);
 
                 return Ok(new Response
                 {

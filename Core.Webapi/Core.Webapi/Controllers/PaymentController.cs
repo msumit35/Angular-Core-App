@@ -14,13 +14,13 @@ namespace Core.Webapi.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMobileRechargeService _mobileRechargeService;
+        private readonly IPaymentService _paymentService;
 
-        public PaymentController(IUnitOfWork unitOfWork, IMobileRechargeService mobileRechargeService)
+        public PaymentController(IMobileRechargeService mobileRechargeService, IPaymentService paymentService)
         {
-            _unitOfWork = unitOfWork;
             _mobileRechargeService = mobileRechargeService;
+            _paymentService = paymentService;
         }
 
         [HttpGet("Modes")]
@@ -28,7 +28,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var modes = await _unitOfWork.PaymentModeRepository.GetAllAsync();
+                var modes = await _paymentService.GetPaymentModes();
 
                 return Ok(new Response
                 {

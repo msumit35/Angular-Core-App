@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class Payment : CrudEntityBase
+    public class Payment : CreateEntityBase
     {
         public Guid PaymentModeId { get; set; }
         public Guid PaymentStatusId { get; set; }

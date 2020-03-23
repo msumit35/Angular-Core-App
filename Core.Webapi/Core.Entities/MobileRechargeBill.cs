@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class MobileRechargeBill : CrudEntityBase
+    public class MobileRechargeBill : CreateEntityBase
     {
         public Guid ServiceProviderId { get; set; }
         public Guid MobileRechargeTypeId { get; set; }

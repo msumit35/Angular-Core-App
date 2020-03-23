@@ -4,15 +4,10 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public abstract class CrudEntityBase : EntityBase
+    public abstract class CrudEntityBase : CreateEntityBase
     {
-        protected CrudEntityBase()
-        {
-            CreatedOn = DateTimeOffset.Now;
-        }
-
-        public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? LastUpdatedOn { get; set; }
+
         public DateTimeOffset? RemovedOn { get; set; }
     }
 }

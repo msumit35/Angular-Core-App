@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface ICrudRepository<T> : IRepository<T>
+    public interface ICrudRepository<T> : ICreateRepository<T>
     {
-        Task<T> Create(T entity);
         Task Update(T entity);
+
         int Remove(T entity);
     }
 }

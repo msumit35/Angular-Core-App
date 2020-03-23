@@ -2,9 +2,7 @@
 	[Id] [uniqueidentifier] NOT NULL,
 	[ServiceProviderId] [uniqueidentifier] NOT NULL,
 	[MobileRechargeTypeId] [uniqueidentifier] NOT NULL,
-	[CreatedOn] [datetimeoffset](7) NOT NULL,
-	[LastUpdatedOn] [datetimeoffset](7) NULL,
-	[RemovedOn] [datetimeoffset](7) NULL,
+	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_MobileRechargeBills_1] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

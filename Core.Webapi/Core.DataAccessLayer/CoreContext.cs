@@ -51,6 +51,5 @@ namespace Core.DataAccessLayer
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<ServiceProvider> ServiceProviders { get; set; }
-        
     }
 }

@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IMobileRechargeBillRepository : ICrudRepository<MobileRechargeBill>
+    public interface IMobileRechargeBillRepository : ICreateRepository<MobileRechargeBill>
     {
     }
 }

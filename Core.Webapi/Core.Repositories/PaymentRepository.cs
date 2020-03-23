@@ -35,15 +35,5 @@ namespace Core.Repositories
             var result = await _payments.AddAsync(entity);
             return result.Entity;
         }
-
-        public Task Update(Payment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(Payment entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
