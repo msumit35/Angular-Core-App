@@ -28,3 +28,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   z-index: 1;
 }
 
+.feature-btn {
+  width: 45%;
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.cancel-btn {
+  width: 45%;
+  float: right;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}

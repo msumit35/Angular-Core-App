@@ -46,7 +46,11 @@ export class RechargeDialog {
     this._paymentService.GetPaymentModes().subscribe((response) => {
       this.paymentModes = response;
       console.log('Modes', this.paymentModes);
-    })
+    });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 
   onSubmit() {

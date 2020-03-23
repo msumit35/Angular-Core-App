@@ -1,39 +1,47 @@
-<form (submit)="onSubmit()">
-    <div class="form-group">
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="paymentModel.PaymentModeId" name="PaymentModeId">
-            <mat-radio-button *ngFor="let mode of paymentModes" class="form-radio" [value]="mode.Id">
-                {{ mode.Name }}
-            </mat-radio-button>
-        </mat-radio-group>
-    </div>
-    <div class="form-group">
-        <mat-form-field class="form-field">
-            <mat-label>Service Provider</mat-label>
-            <mat-select [(ngModel)]="rechargeModel.ServiceProviderId" name="ServiceProviderId">
-                <mat-option *ngFor="let provider of serviceProviders" [value]="provider.Id">
-                    {{ provider.Name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+<h1 mat-dialog-title>Recharge</h1>
+<div mat-dialog-content>
+    <form (submit)="onSubmit()" #form="ngForm">
+        <div class="form-group">
+            <mat-form-field class="form-field">
+                <mat-label>Recharge Type</mat-label>
+                <mat-select [(ngModel)]="rechargeModel.MobileRechargeTypeId" name="MobileRechargeTypeId"
+                    required>
+                    <mat-option *ngFor="let type of rechargeTypes" [value]="type.Id">
+                        {{ type.Name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-    <div class="form-group">
-        <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Amount</mat-label>
-            <input matInput placeholder="Amount" name="Amount" [(ngModel)]="paymentModel.Amount" autocomplete="off" autofocus
-                required>
-        </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field class="form-field">
-            <mat-label>Recharge Type</mat-label>
-            <mat-select [(ngModel)]="rechargeModel.MobileRechargeTypeId" name="MobileRechargeTypeId">
-                <mat-option *ngFor="let type of rechargeTypes" [value]="type.Id">
-                    {{ type.Name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <button type="submit" class="btn btn-primary">Recharge</button>
-    <button type="button" class="btn btn-secondary">Cancel</button>
-</form>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+                <mat-label>Service Provider</mat-label>
+                <mat-select [(ngModel)]="rechargeModel.ServiceProviderId" name="ServiceProviderId"
+                    required>
+                    <mat-option *ngFor="let provider of serviceProviders" [value]="provider.Id">
+                        {{ provider.Name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput placeholder="Amount" name="Amount" [(ngModel)]="paymentModel.Amount" autocomplete="off"
+                    required>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="paymentModel.PaymentModeId"
+                name="PaymentModeId" required>
+                <mat-radio-button *ngFor="let mode of paymentModes" class="form-radio" [value]="mode.Id">
+                    {{ mode.Name }}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <button type="submit" class="btn btn-primary feature-btn" [disabled]="!form.valid">Recharge</button>
+        <button type="button" class="btn btn-danger cancel-btn" (click)="closeDialog()">Cancel</button>
+    </form>
+</div>
