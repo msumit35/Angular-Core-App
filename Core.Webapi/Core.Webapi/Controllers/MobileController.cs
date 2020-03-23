@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.Repositories.Interfaces;
 using Core.Webapi.Enums;
 using Core.Webapi.Models;
+using Core.Webapi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,11 @@ namespace Core.Webapi.Controllers
     [ApiController]
     public class MobileController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMobileRechargeService _mobileRechargeService;
 
-        public MobileController(IUnitOfWork unitOfWork)
+        public MobileController(IMobileRechargeService mobileRechargeService)
         {
-            _unitOfWork = unitOfWork;
+            _mobileRechargeService = mobileRechargeService;
         }
 
         [HttpGet("RechargeTypes")]
@@ -26,7 +27,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var types = await _unitOfWork.MobileRechargeTypeRepository.GetAllAsync();
+                var types = await _mobileRechargeService.GetRechargeTypesAsync();
 
                 return Ok(new Response
                 {
@@ -49,7 +50,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var providers = await _unitOfWork.ServiceProviderRepository.GetAllAsync();
+                var providers = await _mobileRechargeService.GetServiceProvidersAsync();
 
                 return Ok(new Response
                 {
@@ -58,6 +59,29 @@ namespace Core.Webapi.Controllers
                 });
             }
             catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    Status = (int)ResponseStatus.InternalServerError,
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpGet("RechargePayments")]
+        public async Task<IActionResult> GetMobileRechargeBills()
+        {
+            try
+            {
+                var bills = await _mobileRechargeService.GetMobileRechargeBillsAsync();
+
+                return Ok(new Response
+                {
+                    Data = bills,
+                    Status = 200
+                });
+            }
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response
                 {

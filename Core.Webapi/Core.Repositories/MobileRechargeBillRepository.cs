@@ -22,7 +22,7 @@ namespace Core.Repositories
 
         public async Task<IEnumerable<MobileRechargeBill>> GetAllAsync()
         {
-            return await _mobileRechargeBills.ToListAsync();
+            return await _mobileRechargeBills.Include(x => new { x.ServiceProvider, x.MobileRechargeType }).ToListAsync();
         }
 
         public async Task<MobileRechargeBill> GetByIdAsync(Guid id)

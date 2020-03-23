@@ -18,7 +18,7 @@ namespace Core.Webapi.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> IsUserExists(string username, string email)
+        public Task<bool> IsUserExistsAsync(string username, string email)
         {
             return _unitOfWork.UserRepository.IsUserExists(username, email);
         }
@@ -28,12 +28,12 @@ namespace Core.Webapi.Services
             return await _unitOfWork.UserRepository.GetAllAsync();
         }
 
-        public async Task<User> GetUserByUserName(string username)
+        public async Task<User> GetUserByUserNameAsync(string username)
         {
             return await _unitOfWork.UserRepository.GetUserByUserName(username);
         }
 
-        public async Task<User> Create(UserModel model)
+        public async Task<User> CreateAsync(UserModel model)
         {
             var entity = Converter.GetUser(model);
 

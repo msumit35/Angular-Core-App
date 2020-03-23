@@ -19,19 +19,19 @@ namespace Core.Webapi.Services
             _unitOfWork = unitOfWork;
         }
 
-        public virtual async Task<Payment> MakePayment(PaymentModel model)
+        public virtual async Task<Payment> MakePaymentAsync(PaymentModel model)
         {
             try
             {
                 var payment = new Payment();
                 payment.Amount = model.Amount;
-                payment.Mode = await _unitOfWork.PaymentModeRepository.GetByIdAsync(model.PaymentModeId);
+                payment.PaymentMode = await _unitOfWork.PaymentModeRepository.GetByIdAsync(model.PaymentModeId);
 
                 if (model.Status == PaymentStatus.Success)
-                    payment.Status = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("success");
+                    payment.PaymentStatus = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("success");
                 else
                 {
-                    payment.Status = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("failed");
+                    payment.PaymentStatus = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("failed");
                     payment.FailureDescription = "Test failure payment";
                 }
 

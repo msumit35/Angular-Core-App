@@ -17,7 +17,7 @@ namespace Core.Webapi.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<PaymentMode>> GetPaymentModes()
+        public async Task<IEnumerable<PaymentMode>> GetPaymentModesAsync()
         {
             return await _unitOfWork.PaymentModeRepository.GetAllAsync();
         }

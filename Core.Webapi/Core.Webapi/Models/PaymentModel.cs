@@ -15,7 +15,7 @@ namespace Core.Webapi.Models
         public Guid PaymentModeId { get; set; }
 
         [Required]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public MobileRechargeModel MobileRecharge { get; set; }
 

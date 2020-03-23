@@ -34,7 +34,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var user = await _userService.GetUserByUserName(authenticate.Username);
+                var user = await _userService.GetUserByUserNameAsync(authenticate.Username);
 
                 if (user == null)
                 {

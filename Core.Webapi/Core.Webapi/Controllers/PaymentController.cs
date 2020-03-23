@@ -28,7 +28,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var modes = await _paymentService.GetPaymentModes();
+                var modes = await _paymentService.GetPaymentModesAsync();
 
                 return Ok(new Response
                 {
@@ -54,7 +54,7 @@ namespace Core.Webapi.Controllers
                 var entity = new Payment();
                 if (payment.Module == PaymentModule.MobileRecharge)
                 {
-                    entity = await _mobileRechargeService.MakePayment(payment);
+                    entity = await _mobileRechargeService.MakePaymentAsync(payment);
 
                 }
                 else

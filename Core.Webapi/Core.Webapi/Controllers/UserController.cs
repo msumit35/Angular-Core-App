@@ -56,7 +56,7 @@ namespace Core.Webapi.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, errors);
                 }
 
-                var exist = await _userService.IsUserExists(model.Username, model.Email);
+                var exist = await _userService.IsUserExistsAsync(model.Username, model.Email);
 
                 if (exist)
                 {
@@ -68,7 +68,7 @@ namespace Core.Webapi.Controllers
                     });
                 }
 
-                var user = await _userService.Create(model);
+                var user = await _userService.CreateAsync(model);
 
                 return Ok(new Response
                 {

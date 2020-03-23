@@ -22,7 +22,7 @@ namespace Core.Repositories
 
         public async Task<IEnumerable<Payment>> GetAllAsync()
         {
-            return await _payments.ToListAsync();
+            return await _payments.Include(x => new { x.PaymentStatus, x.PaymentMode }).ToListAsync();
         }
 
         public async Task<Payment> GetByIdAsync(Guid id)

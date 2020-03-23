@@ -10,7 +10,7 @@ namespace Core.Entities
         public Guid ServiceProviderId { get; set; }
         public Guid MobileRechargeTypeId { get; set; }
 
-        public MobileRechargeType Type { get; set; }
+        public MobileRechargeType MobileRechargeType { get; set; }
         public ServiceProvider ServiceProvider { get; set; }
     }
 }

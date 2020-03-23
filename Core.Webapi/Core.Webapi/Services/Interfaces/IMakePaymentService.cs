@@ -9,6 +9,6 @@ namespace Core.Webapi.Services.Interfaces
 {
     public interface IMakePaymentService
     {
-        Task<Payment> MakePayment(PaymentModel payment);
+        Task<Payment> MakePaymentAsync(PaymentModel payment);
     }
 }

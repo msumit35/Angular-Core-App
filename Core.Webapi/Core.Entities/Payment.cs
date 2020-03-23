@@ -9,10 +9,10 @@ namespace Core.Entities
     {
         public Guid PaymentModeId { get; set; }
         public Guid PaymentStatusId { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
         public string FailureDescription { get; set; }
 
-        public PaymentStatus Status { get; set; }
-        public PaymentMode Mode { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public PaymentMode PaymentMode { get; set; }
     }
 }

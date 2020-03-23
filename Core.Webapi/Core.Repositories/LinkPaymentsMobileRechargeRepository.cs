@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.DataAccessLayer;
 using Core.Entities;
 using Core.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
@@ -17,9 +18,9 @@ namespace Core.Repositories
             _context = context;
         }
 
-        public Task<IEnumerable<LinkPaymentMobileRechargeBill>> GetAllAsync()
+        public async Task<IEnumerable<LinkPaymentMobileRechargeBill>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.LinkPaymentsMobileRechargeBills.ToListAsync();
         }
 
         public Task<LinkPaymentMobileRechargeBill> GetByIdAsync(Guid id)

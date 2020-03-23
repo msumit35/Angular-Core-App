@@ -8,6 +8,6 @@ namespace Core.Webapi.Services.Interfaces
 {
     public interface IPaymentService
     {
-        Task<IEnumerable<PaymentMode>> GetPaymentModes();
+        Task<IEnumerable<PaymentMode>> GetPaymentModesAsync();
     }
 }
