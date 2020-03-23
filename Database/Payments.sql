@@ -2,7 +2,7 @@
 	[Id] [uniqueidentifier] NOT NULL,
 	[PaymentModeId] [uniqueidentifier] NOT NULL,
 	[PaymentStatusId] [uniqueidentifier] NOT NULL,
-	[Amount] [bigint] NOT NULL,
+	[Amount] NUMERIC NOT NULL,
 	[FailureDescription] [nvarchar](250) NULL,
 	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_Payments_1] PRIMARY KEY CLUSTERED 
