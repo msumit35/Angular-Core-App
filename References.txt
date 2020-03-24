@@ -1,0 +1,7 @@
+Angular Authentication
+https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial
+
+Angular Material Setup
+https://www.tutorialspoint.com/angular_material7/angular_material7_environment_setup.htm
+
+npm install --save @angular/material@7.0.3 @angular/cdk@7.0.3 @angular/animations@6.1.0 hammerjs
