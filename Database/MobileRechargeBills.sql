@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[MobileRechargeBills](
 	[Id] [uniqueidentifier] NOT NULL,
+	[MobileNumber] [nvarchar](10) NOT NULL,
 	[ServiceProviderId] [uniqueidentifier] NOT NULL,
 	[MobileRechargeTypeId] [uniqueidentifier] NOT NULL,
 	[CreatedById] [uniqueidentifier] NOT NULL,
