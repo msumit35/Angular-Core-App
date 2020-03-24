@@ -4,6 +4,7 @@
 	[PaymentStatusId] [uniqueidentifier] NOT NULL,
 	[Amount] NUMERIC NOT NULL,
 	[FailureDescription] [nvarchar](250) NULL,
+	[CreatedById] [uniqueidentifier] NOT NULL,
 	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_Payments_1] PRIMARY KEY CLUSTERED 
 (
@@ -21,4 +22,9 @@ ALTER TABLE [dbo].[Payments]  WITH CHECK ADD  CONSTRAINT [FK_Payments_PaymentSta
 REFERENCES [dbo].[PaymentStatuses] ([Id])
 GO
 ALTER TABLE [dbo].[Payments] CHECK CONSTRAINT [FK_Payments_PaymentStatuses]
+GO
+ALTER TABLE [dbo].[Payments]  WITH CHECK ADD  CONSTRAINT [FK_Payments_Users] FOREIGN KEY([CreatedById])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[Payments] CHECK CONSTRAINT [FK_Payments_Users]
 GO

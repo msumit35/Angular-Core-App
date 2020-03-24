@@ -2,6 +2,7 @@
 	[Id] [uniqueidentifier] NOT NULL,
 	[ServiceProviderId] [uniqueidentifier] NOT NULL,
 	[MobileRechargeTypeId] [uniqueidentifier] NOT NULL,
+	[CreatedById] [uniqueidentifier] NOT NULL,
 	[CreatedOn] [datetimeoffset](7) NOT NULL
  CONSTRAINT [PK_MobileRechargeBills_1] PRIMARY KEY CLUSTERED 
 (
@@ -19,4 +20,9 @@ ALTER TABLE [dbo].[MobileRechargeBills]  WITH CHECK ADD  CONSTRAINT [FK_MobileRe
 REFERENCES [dbo].[MobileRechargeTypes] ([Id])
 GO
 ALTER TABLE [dbo].[MobileRechargeBills] CHECK CONSTRAINT [FK_MobileRechargeBills_MobileRechargeTypes1]
+GO
+ALTER TABLE [dbo].[MobileRechargeBills]  WITH CHECK ADD  CONSTRAINT [FK_MobileRechargeBills_Users] FOREIGN KEY([CreatedById])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[MobileRechargeBills] CHECK CONSTRAINT [FK_MobileRechargeBills_Users]
 GO
