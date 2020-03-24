@@ -21,6 +21,7 @@ import { AuthenticateService } from './services/authenticate.service';
 import { LoginComponent } from './login/login.component';
 import { appRoutingModule } from './app.routing';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorEnterceptor } from './_helpers/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './services/user.service';
 import { RegisterComponent } from './register/register.component';
@@ -33,6 +34,7 @@ import { PaymentService } from './services/payment.service';
 import { MobileService } from './services/mobile-recharge.service';
 import { MobileRechargeComponent } from './mobile-recharge/mobile-recharge.component';
 import { RechargeDialog } from './mobile-recharge/recharge.dialog';
+import { SidenavService } from './services/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -69,11 +71,13 @@ import { RechargeDialog } from './mobile-recharge/recharge.dialog';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorEnterceptor, multi: true },
     AuthenticateService,
     UserService,
     SpinnerService,
     MobileService,
-    PaymentService
+    PaymentService,
+    SidenavService
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent, RechargeDialog]

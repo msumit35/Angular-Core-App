@@ -1,5 +1,6 @@
 
 export class MobileRechargeBillModel {
+    MobileNumber: string;
     PaymentMode: string;
     ServiceProvider: string;
     Amount: string;

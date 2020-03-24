@@ -5,6 +5,11 @@
     <button class="btn btn-primary recharge-btn" (click)="openReachargeDialog()">Recharge</button>
 
     <mat-table [dataSource]="bills">
+        <ng-container matColumnDef="MobileNumber">
+            <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.MobileNumber}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="RechargeType">
             <mat-header-cell *matHeaderCellDef> Recharge Type </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.RechargeType}} </mat-cell>
@@ -33,9 +38,9 @@
         </ng-container>
 
         <!-- Header and Row Declarations -->
-        <mat-header-row *matHeaderRowDef="['RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
+        <mat-header-row *matHeaderRowDef="['MobileNumber', 'RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
         </mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
+        <mat-row *matRowDef="let row; columns: ['MobileNumber', 'RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
         </mat-row>
     </mat-table>
 </mat-card>

@@ -1,14 +1,28 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav #sidenav mode="side" [opened]="currentUser != null">
-    <a href="/">Home</a>
-    <a href="/mobile-recharge">Mobile Recharge</a>
-  </mat-sidenav>
+    <mat-sidenav #sidenav mode="side" [opened]="currentUser != null">
+        <ul class="ul-menus">
+            <li routerLink="/" [ngClass]="activeLink == 'Home' ? 'active-link' : ''">
+                Home
+            </li>
+            <li routerLink="/mobile-recharge" [ngClass]="activeLink == 'Mobile Recharge' ? 'active-link' : ''">
+                Mobile Recharge
+            </li>
+        </ul>
+        <!-- <div class="sidebar-link-container">
+            <div class="form-group">
+                <a class="btn transparent-btn" href="/">Home</a>
+            </div>
+            <div class="form-group">
+                <a class="btn transparent-btn" href="/mobile-recharge">Mobile Recharge</a>
+            </div>
+        </div> -->
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <app-toolbar [sidenav-event]="sidenav"></app-toolbar>
-    <div class="main-content">
-      <app-spinner></app-spinner>
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+    <mat-sidenav-content>
+        <app-toolbar [sidenav-event]="sidenav"></app-toolbar>
+        <div class="main-content">
+            <app-spinner></app-spinner>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>

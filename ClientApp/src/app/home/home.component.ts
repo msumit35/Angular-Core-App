@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { SidenavService } from '../services/sidenav.service';
+import { SidenavLinks } from '../models/sidenav.enum';
 
 @Component({
     selector: 'app-home',
@@ -8,8 +10,9 @@ import { User } from '../models/user.model';
 })
 export class HomeComponent {
     users: User[];
-    constructor(private _userService: UserService) {
+    constructor(private _userService: UserService, private _sidenav: SidenavService) {
         this.GetAllUsers();
+        _sidenav.ActiveLink(SidenavLinks.Home);
     }
 
     GetAllUsers() {

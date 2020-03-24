@@ -1,16 +1,6 @@
-/* .app-drawer-content {
-    margin-top: 15px;
-}
-
-.example-container {
-    margin: 10px;
-    border: 1px solid #555;
-  }
-   */
-
 .mat-sidenav {
     width: 250px;
-    padding: 15px;
+    /* padding: 15px; */
 }
 
 .mat-drawer {
@@ -24,4 +14,39 @@
 
 .toolbar-spacer {
     flex: 1 1 auto;
+}
+
+.sidebar-link-container {
+    margin-top: 12vh;
+}
+
+.ul-menus {
+    list-style: none;
+    margin-top: 9.8vh;
+    padding: 0;
+}
+
+.ul-menus :hover {
+    background: white;
+    color: #023075;
+}
+
+.ul-menus li {
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    padding: 12px;
+}
+
+.ul-menus .a-menu {
+    color: white;
+}
+
+.ul-menus .active-link {
+    background: white;
+    color: #023075;
+}
+
+.ul-menus .active-link a {
+    color: #023075;
 }
