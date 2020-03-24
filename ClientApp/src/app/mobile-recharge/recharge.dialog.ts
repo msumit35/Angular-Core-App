@@ -35,22 +35,19 @@ export class RechargeDialog {
 
     this._mobileService.GetRechargeType().subscribe((response) => {
       this.rechargeTypes = response;
-      console.log('Recharge types', this.rechargeTypes);
     });
 
     this._mobileService.GetServiceProviders().subscribe((response) => {
       this.serviceProviders = response;
-      console.log('Service Providers', this.serviceProviders);
     });
 
     this._paymentService.GetPaymentModes().subscribe((response) => {
       this.paymentModes = response;
-      console.log('Modes', this.paymentModes);
     });
   }
 
-  closeDialog() {
-    this.dialogRef.close();
+  closeDialog(data: any = null) {
+    this.dialogRef.close(data);
   }
 
   onSubmit() {
@@ -60,6 +57,7 @@ export class RechargeDialog {
       .subscribe((response) => {
         this._spinnerService.ProcessingOff();
         this._toastrService.success('Payment has been done successfully', 'Success');
+        this.closeDialog(true);
         console.log('Response Make Payment->', response);
       },
       (error) => {

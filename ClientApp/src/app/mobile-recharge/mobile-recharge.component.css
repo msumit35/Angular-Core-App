@@ -6,3 +6,15 @@
 .form-radio {
     margin-right: 10px;
 }
+
+.success-status {
+    color: green;
+}
+
+.failed-status {
+    color: red;
+}
+
+.recharge-btn {
+    margin-bottom: 1%;
+}

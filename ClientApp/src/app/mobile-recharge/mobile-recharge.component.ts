@@ -7,7 +7,8 @@ import { MobileRechargeBillModel } from '../models/mobile-recharge-bill.model';
 
 @Component({
   selector: 'app-mobile-recharge',
-  templateUrl: 'mobile-recharge.component.html'
+  templateUrl: 'mobile-recharge.component.html',
+  styleUrls: ['mobile-recharge.component.css']
 })
 export class MobileRechargeComponent {
   rechargeTypes: MasterEntity[];
@@ -16,6 +17,10 @@ export class MobileRechargeComponent {
 
   constructor(public dialog: MatDialog, private _mobileService: MobileService) {
 
+    this.getRechargeBills();
+  }
+
+  getRechargeBills() {
     this._mobileService.GetRechargeBills().subscribe((response) => {
       this.bills = response;
     });
@@ -26,8 +31,10 @@ export class MobileRechargeComponent {
       width: '400px'
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('dialog closed', result);
+      if (result)
+        this.getRechargeBills();
+    });
   }
 }

@@ -1,43 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .transparent-btn {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
-  }
+    outline: none;
+}
 
 .section-title {
     text-align: left;
     font-weight: 500;
     font-size: larger;
     font-size: 20px;
-  }
+}
 
 .progress-spinner {
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-  z-index: 1;
+    position: fixed !important;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    z-index: 1;
 }
 
 .feature-btn {
-  width: 45%;
-  float: left;
-  margin-top: 15px;
-  margin-bottom: 10px;
+    width: 45%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .cancel-btn {
-  width: 45%;
-  float: right;
-  margin-top: 15px;
-  margin-bottom: 10px;
+    width: 45%;
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.main-card {
+    padding-bottom: 88px !important;
 }

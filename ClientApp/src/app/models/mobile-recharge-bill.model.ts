@@ -5,4 +5,5 @@ export class MobileRechargeBillModel {
     Amount: string;
     RechargeType: string;
     Status: string;
+    CreatedOn: Date;
 }

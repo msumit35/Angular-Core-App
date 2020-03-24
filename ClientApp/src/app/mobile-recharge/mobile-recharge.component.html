@@ -1,34 +1,41 @@
+<mat-card class="main-card">
+    <h5>Mobile Recharge</h5>
+    <hr>
 
-<pre>Mobile Recharge</pre>
-<button class="btn btn-primary" (click)="openReachargeDialog()">Recharge</button>
+    <button class="btn btn-primary recharge-btn" (click)="openReachargeDialog()">Recharge</button>
 
-<mat-table [dataSource]="users">
-    <ng-container matColumnDef="PaymentMode">
-      <mat-header-cell *matHeaderCellDef> Payment Mode </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.PaymentMode}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="ServiceProvider">
-      <mat-header-cell *matHeaderCellDef> Service Provider </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.ServiceProvider}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="Amount">
-      <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Amount}} </mat-cell>
-    </ng-container>
+    <mat-table [dataSource]="bills">
+        <ng-container matColumnDef="RechargeType">
+            <mat-header-cell *matHeaderCellDef> Recharge Type </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.RechargeType}} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="RechargeType">
-        <mat-header-cell *matHeaderCellDef> Recharge Type </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.RechargeType}} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="ServiceProvider">
+            <mat-header-cell *matHeaderCellDef> Service Provider </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ServiceProvider}} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="Status">
-        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Status}} </mat-cell>
-      </ng-container>
-  
-    <!-- Header and Row Declarations -->
-    <mat-header-row *matHeaderRowDef="['PaymentMode', 'ServiceProvider', 'Amount', 'RechargeType', 'Status']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['PaymentMode', 'ServiceProvider', 'Amount', 'RechargeType', 'Status']"></mat-row>
-  </mat-table>
+        <ng-container matColumnDef="Amount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Amount | currency}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="PaymentMode">
+            <mat-header-cell *matHeaderCellDef> Payment Mode </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.PaymentMode}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Success' ? 'success-status' : 'failed-status'">
+                {{row.Status}}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <mat-header-row *matHeaderRowDef="['RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
+        </mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['RechargeType', 'ServiceProvider', 'Amount', 'PaymentMode', 'Status']">
+        </mat-row>
+    </mat-table>
+</mat-card>
