@@ -7,8 +7,12 @@ namespace Core.Entities
     public class ElectricityBill : CreateEntityBase
     {
         public string ConsumerNumber { get; set; }
+
         public Guid ElectricityProviderId { get; set; }
 
         public ElectricityProvider Provider { get; set; }
+
+        public List<LinkPaymentElectricityBill> PaymentElectricityBills { get; set; }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Common.Enums;
 using Core.Entities;
 using Core.Webapi.Enums;
 using Microsoft.Extensions.Configuration;

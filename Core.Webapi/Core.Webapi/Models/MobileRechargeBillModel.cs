@@ -16,5 +16,7 @@ namespace Core.Webapi.Models
         public string RechargeType { get; set; }
 
         public string Status { get; set; }
+
+        public DateTimeOffset CreatedOn { get; set; }
     }
 }

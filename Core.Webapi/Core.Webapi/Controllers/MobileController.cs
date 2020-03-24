@@ -6,11 +6,13 @@ using Core.Repositories.Interfaces;
 using Core.Webapi.Enums;
 using Core.Webapi.Models;
 using Core.Webapi.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core.Webapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MobileController : ControllerBase

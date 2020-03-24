@@ -24,7 +24,7 @@ namespace Core.DataAccessLayer
         protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<LinkPaymentMobileRechargeBill>().ToTable("Link_Payments_MobileRechargeBills");
-            mb.Entity<LinkPaymentElectricityBills>().ToTable("Link_Payments_ElectricityBills");
+            mb.Entity<LinkPaymentElectricityBill>().ToTable("Link_Payments_ElectricityBills");
             mb.Entity<PaymentStatus>().ToTable("PaymentStatuses");
         }
 
@@ -36,7 +36,7 @@ namespace Core.DataAccessLayer
 
         public DbSet<ElectricityProvider> ElectricityProviders { get; set; }
 
-        public DbSet<LinkPaymentElectricityBills> LinkPaymentsElectricityBills { get; set; }
+        public DbSet<LinkPaymentElectricityBill> LinkPaymentsElectricityBills { get; set; }
 
         public DbSet<LinkPaymentMobileRechargeBill> LinkPaymentsMobileRechargeBills { get; set; }
 

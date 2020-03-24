@@ -7,10 +7,19 @@ namespace Core.Entities
 {
     public class MobileRechargeBill : CreateEntityBase
     {
+        public MobileRechargeBill()
+        {
+            PaymentsMobileRechargeBills = new List<LinkPaymentMobileRechargeBill>();
+        }
+
         public Guid ServiceProviderId { get; set; }
+
         public Guid MobileRechargeTypeId { get; set; }
 
         public MobileRechargeType MobileRechargeType { get; set; }
+
         public ServiceProvider ServiceProvider { get; set; }
+
+        public List<LinkPaymentMobileRechargeBill> PaymentsMobileRechargeBills { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Common.Interfaces;
 using Core.DataAccessLayer;
 using Core.Entities;
 using Core.Repositories.Interfaces;
@@ -22,7 +23,10 @@ namespace Core.Repositories
 
         public async Task<IEnumerable<Payment>> GetAllAsync()
         {
-            return await _payments.Include(x => new { x.PaymentStatus, x.PaymentMode }).ToListAsync();
+            return await _payments
+                            .Include(x => x.PaymentStatus)
+                            .Include(x => x.PaymentMode)
+                            .ToListAsync();
         }
 
         public async Task<Payment> GetByIdAsync(Guid id)

@@ -55,7 +55,6 @@ namespace Core.Webapi.Controllers
                 if (payment.Module == PaymentModule.MobileRecharge)
                 {
                     entity = await _mobileRechargeService.MakePaymentAsync(payment);
-
                 }
                 else
                 {

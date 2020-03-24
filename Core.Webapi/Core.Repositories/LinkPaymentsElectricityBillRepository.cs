@@ -9,27 +9,27 @@ namespace Core.Repositories
 {
     public class LinkPaymentsElectricityBillRepository : ILinkPaymentsElectricityBillRepository
     {
-        public Task<IEnumerable<LinkPaymentElectricityBills>> GetAllAsync()
+        public Task<IEnumerable<LinkPaymentElectricityBill>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<LinkPaymentElectricityBills> GetByIdAsync(Guid id)
+        public Task<LinkPaymentElectricityBill> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<LinkPaymentElectricityBills> Create(LinkPaymentElectricityBills entity)
+        public Task<LinkPaymentElectricityBill> Create(LinkPaymentElectricityBill entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(LinkPaymentElectricityBills entity)
+        public Task Update(LinkPaymentElectricityBill entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Remove(LinkPaymentElectricityBills entity)
+        public int Remove(LinkPaymentElectricityBill entity)
         {
             throw new NotImplementedException();
         }

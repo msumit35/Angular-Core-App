@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using Core.Common;
+using Core.Common.Interfaces;
 using Core.Webapi.Services;
 using Core.Webapi.Services.Interfaces;
 
@@ -52,6 +54,8 @@ namespace Core.Webapi
                     };
                 });
 
+            services.AddHttpContextAccessor();
+
             //Dependencies
             services.AddScoped<CoreContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -76,6 +80,7 @@ namespace Core.Webapi
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddSingleton<ICoreUserContext, CoreUserContext>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
         }
 
