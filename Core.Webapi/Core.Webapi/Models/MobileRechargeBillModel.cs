@@ -7,6 +7,8 @@ namespace Core.Webapi.Models
 {
     public class MobileRechargeBillModel
     {
+        public string MobileNumber { get; set; }
+
         public string PaymentMode { get; set; }
 
         public string ServiceProvider { get; set; }

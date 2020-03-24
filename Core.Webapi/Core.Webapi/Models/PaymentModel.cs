@@ -39,6 +39,9 @@ namespace Core.Webapi.Models
     public class MobileRechargeModel
     {
         [Required]
+        public string MobileNumber { get; set; }
+
+        [Required]
         public Guid MobileRechargeTypeId { get; set; }
 
         [Required]

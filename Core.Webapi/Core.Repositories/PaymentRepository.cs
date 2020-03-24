@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Common.Interfaces;
@@ -34,6 +35,14 @@ namespace Core.Repositories
             return await _payments.FindAsync(id);
         }
 
+        public async Task<IEnumerable<Payment>> GetPaymentsByCreatedById(Guid id)
+        {
+            return await _payments.Where(x => x.User.Id == id)
+                                .Include(x => x.PaymentStatus)
+                                .Include(x => x.PaymentMode)
+                                .ToListAsync();
+        }
+        
         public async Task<Payment> Create(Payment entity)
         {
             var result = await _payments.AddAsync(entity);

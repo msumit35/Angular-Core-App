@@ -11,6 +11,7 @@ namespace Core.Common
     public class CoreUserContext : ICoreUserContext
     {
         private readonly IEnumerable<Claim> _claims;
+        private const string MasterUserId = "ab3c1a56-50bf-4aad-a481-49ab73e3bcee"; //in case of register, use this user id
 
         public CoreUserContext(IHttpContextAccessor httpContextAccessor)
         {
@@ -21,7 +22,8 @@ namespace Core.Common
         {
             get
             {
-                return Guid.Parse(_claims?.FirstOrDefault(x => x.Type == ClaimsTypes.UserId.ToString())?.Value);
+                var id = _claims?.FirstOrDefault(x => x.Type == ClaimsTypes.UserId.ToString())?.Value ?? MasterUserId;
+                return Guid.Parse(id);
             }
         }
     }

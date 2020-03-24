@@ -36,7 +36,7 @@ namespace Core.Webapi.Services
         {
             try
             {
-                var payments = await _unitOfWork.PaymentRepository.GetAllAsync();
+                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByCreatedById(_userContext.UserId);
                 var bills = await _unitOfWork.MobileRechargeBillRepository.GetAllAsync();
                 var paymentsBillsLink = await _unitOfWork.LinkPaymentsMobileRechargeRepository.GetAllAsync();
 
@@ -45,6 +45,7 @@ namespace Core.Webapi.Services
                            join p in payments on pbl.PaymentId equals p.Id
                            select new MobileRechargeBillModel
                            {
+                               MobileNumber = b.MobileNumber,
                                Status = p.PaymentStatus.Name,
                                ServiceProvider = b.ServiceProvider.Name,
                                PaymentMode = p.PaymentMode.Name,
@@ -66,7 +67,6 @@ namespace Core.Webapi.Services
             try
             {
                 var payment = await base.MakePaymentAsync(model);
-                //payment = await _unitOfWork.PaymentRepository.Create(payment);
 
                 var mobileRecharge = new MobileRechargeBill
                 {
@@ -76,7 +76,8 @@ namespace Core.Webapi.Services
                     ServiceProvider =
                         await _unitOfWork.ServiceProviderRepository.GetByIdAsync(model.MobileRecharge
                             .ServiceProviderId),
-                    User = payment.User
+                    User = payment.User,
+                    MobileNumber = model.MobileRecharge.MobileNumber
                 };
 
                 var link = new LinkPaymentMobileRechargeBill
