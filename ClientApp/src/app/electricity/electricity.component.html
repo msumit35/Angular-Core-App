@@ -1,0 +1,41 @@
+<mat-card class="main-card">
+    <h5>Electricity</h5>
+    <hr>
+
+    <button class="btn btn-primary recharge-btn" (click)="openReachargeDialog()">Recharge</button>
+
+    <mat-table [dataSource]="bills">
+        <ng-container matColumnDef="ConsumerNumber">
+            <mat-header-cell *matHeaderCellDef> Consumer Number </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ConsumerNumber}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Provider">
+            <mat-header-cell *matHeaderCellDef> Provider </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Provider}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Amount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Amount | currency}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="PaymentMode">
+            <mat-header-cell *matHeaderCellDef> Payment Mode </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.PaymentMode}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="row.Status == 'Success' ? 'success-status' : 'failed-status'">
+                {{row.Status}}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <mat-header-row *matHeaderRowDef="['ConsumerNumber', 'Provider', 'Amount', 'PaymentMode', 'Status']">
+        </mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['ConsumerNumber', 'Provider', 'Amount', 'PaymentMode', 'Status']">
+        </mat-row>
+    </mat-table>
+</mat-card>

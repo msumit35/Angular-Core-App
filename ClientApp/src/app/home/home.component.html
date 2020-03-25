@@ -1,26 +1,29 @@
+<mat-card class="main-card">
+    <h5>Home</h5>
+    <hr>
+    <mat-table [dataSource]="users">
+        <ng-container matColumnDef="FirstName">
+            <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
+        </ng-container>
 
-<mat-table [dataSource]="users">
-    <ng-container matColumnDef="FirstName">
-      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="LastName">
-      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="Email">
-      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="LastName">
+            <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="Username">
-        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Username}} </mat-cell>
-      </ng-container>
-  
-    <!-- Header and Row Declarations -->
-    <mat-header-row *matHeaderRowDef="['FirstName', 'LastName', 'Email', 'Username']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['FirstName', 'LastName', 'Email', 'Username']"></mat-row>
-  </mat-table>
+        <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Username">
+            <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Username}} </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <mat-header-row *matHeaderRowDef="['FirstName', 'LastName', 'Email', 'Username']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['FirstName', 'LastName', 'Email', 'Username']"></mat-row>
+    </mat-table>
+</mat-card>

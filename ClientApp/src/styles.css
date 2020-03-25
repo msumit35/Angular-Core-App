@@ -52,3 +52,33 @@ body {
 .main-card {
     padding-bottom: 88px !important;
 }
+
+.recharge-btn {
+    margin-bottom: 1%;
+}
+
+
+/*Dialog css*/
+
+.form-field {
+    width: 100%;
+}
+
+.form-radio {
+    margin-right: 10px;
+}
+
+.dialog-content {
+    max-height: none !important;
+}
+
+
+/*Dialog css*/
+
+.success-status {
+    color: green;
+}
+
+.failed-status {
+    color: red;
+}

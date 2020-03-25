@@ -22,7 +22,7 @@
 
 .ul-menus {
     list-style: none;
-    margin-top: 9.8vh;
+    margin-top: 12.5vh;
     padding: 0;
 }
 
@@ -34,8 +34,10 @@
 .ul-menus li {
     cursor: pointer;
     outline: 0;
-    border: none;
     padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #0b3594;
+    border-radius: 25px;
 }
 
 .ul-menus .a-menu {

@@ -35,6 +35,9 @@ import { MobileService } from './services/mobile-recharge.service';
 import { MobileRechargeComponent } from './mobile-recharge/mobile-recharge.component';
 import { RechargeDialog } from './mobile-recharge/recharge.dialog';
 import { SidenavService } from './services/sidenav.service';
+import { ElectricityComponent } from './electricity/electricity.component';
+import { ElectricityRechargeDialog } from './electricity/recharge.dialog';
+import { ElectricityService } from './services/electricity.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import { SidenavService } from './services/sidenav.service';
     DialogComponent,
     SpinnerComponent,
     MobileRechargeComponent,
-    RechargeDialog
+    ElectricityComponent,
+    RechargeDialog,
+    ElectricityRechargeDialog
   ],
   imports: [
     BrowserModule,
@@ -77,10 +82,11 @@ import { SidenavService } from './services/sidenav.service';
     SpinnerService,
     MobileService,
     PaymentService,
-    SidenavService
+    SidenavService,
+    ElectricityService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, RechargeDialog]
+  entryComponents: [DialogComponent, RechargeDialog, ElectricityRechargeDialog]
   
 })
 export class AppModule { }
