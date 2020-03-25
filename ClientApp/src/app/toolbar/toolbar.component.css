@@ -1,22 +1,25 @@
-
 .toolbar-icon {
     padding: 0 0;
-  }
-  
-  .toolbar-spacer {
+}
+
+.toolbar-spacer {
     flex: 1 1 auto;
-  }
+}
 
-  .toolbar-btn {
+.toolbar-btn {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
     color: white;
-  }
+}
 
-  .toolbar-name {
-      margin-right: 30px;
-  }
+.sidenav-btn {
+    margin-top: 10px;
+}
+
+.toolbar-name {
+    margin-right: 30px;
+}
