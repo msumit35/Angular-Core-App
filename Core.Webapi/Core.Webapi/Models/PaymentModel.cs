@@ -35,7 +35,7 @@ namespace Core.Webapi.Models
 
     public enum PaymentStatus
     {
-        Success,
+        Success = 1,
         Failed
     }
 

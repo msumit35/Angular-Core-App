@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Core.Common.Interfaces;
 using Core.Entities;
@@ -26,6 +27,9 @@ namespace Core.Webapi.Services
         {
             try
             {
+
+                Thread.Sleep(new Random().Next(3000,6000));
+
                 var payment = new Payment
                 {
                     Amount = model.Amount,

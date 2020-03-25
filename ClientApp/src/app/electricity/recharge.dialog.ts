@@ -57,6 +57,7 @@ export class ElectricityRechargeDialog {
           },
           (error) => {
             this._spinnerService.ProcessingOff();
+            this.dialogRef.close();
             console.log('ElectricityRechargeDialog->onSubmit', error);
           });
       }
