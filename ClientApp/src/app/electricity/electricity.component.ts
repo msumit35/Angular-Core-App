@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SidenavService } from '../services/sidenav.service';
-import { SidenavLinks } from '../models/sidenav.enum';
+import { NavigationLinks } from '../app.navigation';
 import { MatDialog } from '@angular/material/dialog';
 import { ElectricityRechargeDialog } from './recharge.dialog';
 import { ElectricityService } from '../services/electricity.service';
@@ -16,7 +16,7 @@ export class ElectricityComponent {
     constructor(private _dialog: MatDialog, private _sidenavService: SidenavService,
                 private _electricityService: ElectricityService) {
 
-        _sidenavService.ActiveLink(SidenavLinks.Electricity);
+        _sidenavService.ActiveLink(NavigationLinks.Electricity);
         this.getElectricityRechargeBills();
     }
 

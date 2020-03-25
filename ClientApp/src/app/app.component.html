@@ -1,14 +1,8 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="side" [opened]="currentUser != null">
         <ul class="ul-menus">
-            <li routerLink="/" [ngClass]="activeLink == 'Home' ? 'active-link' : ''">
-                Home
-            </li>
-            <li routerLink="/mobile-recharge" [ngClass]="activeLink == 'Mobile Recharge' ? 'active-link' : ''">
-                Mobile Recharge
-            </li>
-            <li routerLink="/electricity" [ngClass]="activeLink == 'Electricity' ? 'active-link' : ''">
-                Electricity
+            <li *ngFor="let link of links" [routerLink]="link.Path" [ngClass]="activeLink == link.Title ? 'active-link' : ''">
+                {{ link.Title }}
             </li>
         </ul>
     </mat-sidenav>

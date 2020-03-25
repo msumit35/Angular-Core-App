@@ -6,6 +6,8 @@ import { RegisterComponent } from './register/register.component';
 import { MobileRechargeComponent } from './mobile-recharge/mobile-recharge.component';
 import { ElectricityComponent } from './electricity/electricity.component';
 
+/*NOTE: To add navigation links to sidebar, add into app.navigation.ts in NavigationLinks enum 
+and const links-> */
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },

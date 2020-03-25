@@ -4,7 +4,7 @@ import { MasterEntity } from '../models/master-entity.model';
 import { RechargeDialog } from './recharge.dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { MobileRechargeBillModel } from '../models/mobile-recharge-bill.model';
-import { SidenavLinks } from '../models/sidenav.enum';
+import { NavigationLinks } from '../app.navigation';
 import { SidenavService } from '../services/sidenav.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class MobileRechargeComponent {
             private _sidenavService: SidenavService) {
 
     this.getRechargeBills();
-    _sidenavService.ActiveLink(SidenavLinks.MobileRecharge);
+    _sidenavService.ActiveLink(NavigationLinks.MobileRecharge);
   }
 
   getRechargeBills() {
