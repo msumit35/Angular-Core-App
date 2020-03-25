@@ -6,20 +6,24 @@ using Core.Repositories;
 using Core.Repositories.Interfaces;
 using Core.Webapi.Enums;
 using Core.Webapi.Models;
+using Core.Webapi.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Core.Webapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ElectricityController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IElectricityService _electricityService;
 
-        public ElectricityController(IUnitOfWork unitOfWork)
+        public ElectricityController(IElectricityService electricityService)
         {
-            _unitOfWork = unitOfWork;
+            _electricityService = electricityService;
         }
 
         [HttpGet("Providers")]
@@ -27,7 +31,7 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var providers = await _unitOfWork.ElectricityProviderRepository.GetAllAsync();
+                var providers = await _electricityService.GetElectricityProviders();
 
                 return Ok(new Response
                 {
@@ -40,6 +44,29 @@ namespace Core.Webapi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response
                 {
                     Status = (int) ResponseStatus.InternalServerError,
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpGet("ElectricityPayments")]
+        public async Task<IActionResult> GetElectricityBills()
+        {
+            try
+            {
+                var providers = await _electricityService.GetElectricityBills();
+
+                return Ok(new Response
+                {
+                    Status = (int)ResponseStatus.Success,
+                    Data = providers
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    Status = (int)ResponseStatus.InternalServerError,
                     ErrorMessage = "Something went wrong"
                 });
             }

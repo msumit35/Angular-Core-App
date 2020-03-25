@@ -36,13 +36,13 @@ namespace Core.Webapi.Services
         {
             try
             {
-                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByCreatedById(_userContext.UserId);
-                var bills = await _unitOfWork.MobileRechargeBillRepository.GetAllAsync();
+                var bills = await _unitOfWork.MobileRechargeBillRepository.GetMobileRechargeBillsByCreatedById(_userContext.UserId);
+                var paymentIds = bills.Select(s => s.PaymentsMobileRechargeBills.FirstOrDefault()?.PaymentId ?? Guid.Empty);
+                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByIds(paymentIds);
                 var paymentsBillsLink = await _unitOfWork.LinkPaymentsMobileRechargeRepository.GetAllAsync();
 
                 var list = from b in bills
-                           join pbl in paymentsBillsLink on b.Id equals pbl.MobileRechargeBillId
-                           join p in payments on pbl.PaymentId equals p.Id
+                           join p in payments on b.PaymentsMobileRechargeBills.FirstOrDefault()?.PaymentId equals p.Id
                            select new MobileRechargeBillModel
                            {
                                MobileNumber = b.MobileNumber,

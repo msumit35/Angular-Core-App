@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Core.DataAccessLayer;
 using Core.Entities;
 using Core.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
     public class LinkPaymentsElectricityBillRepository : ILinkPaymentsElectricityBillRepository
     {
-        public Task<IEnumerable<LinkPaymentElectricityBill>> GetAllAsync()
+        private readonly CoreContext _context;
+
+        public LinkPaymentsElectricityBillRepository(CoreContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<IEnumerable<LinkPaymentElectricityBill>> GetAllAsync()
+        {
+            return await _context.LinkPaymentsElectricityBills.ToListAsync();
         }
 
         public Task<LinkPaymentElectricityBill> GetByIdAsync(Guid id)

@@ -79,7 +79,7 @@ namespace Core.Webapi
             services.AddScoped<IMobileRechargeService, MobileRechargeService>();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IUserService, UserService>();
-            
+            services.AddScoped<IElectricityService, ElectricityService>();
             services.AddScoped<ICoreUserContext, CoreUserContext>();
             services.AddSingleton<IJwtTokenService, JwtTokenService>();
         }

@@ -19,5 +19,7 @@ namespace Core.Entities
         public PaymentStatus PaymentStatus { get; set; }
 
         public PaymentMode PaymentMode { get; set; }
+
+        public List<LinkPaymentElectricityBill> PaymentsElectricityBills { get; set; }
     }
 }

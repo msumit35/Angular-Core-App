@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Webapi.Attributes;
 
 namespace Core.Webapi.Models
 {
@@ -17,9 +18,11 @@ namespace Core.Webapi.Models
         [Required]
         public decimal Amount { get; set; }
 
+        [RequiredBasedOnModule(PaymentModule.MobileRecharge)]
         public MobileRechargeModel MobileRecharge { get; set; }
 
-        public ElectricityModel Electricity { get; set; }
+        [RequiredBasedOnModule(PaymentModule.Electricity)]
+        public ElectricityModel ElectricityRecharge { get; set; }
 
         public PaymentStatus Status { get; set; }
     }
@@ -38,22 +41,17 @@ namespace Core.Webapi.Models
 
     public class MobileRechargeModel
     {
-        [Required]
         public string MobileNumber { get; set; }
 
-        [Required]
         public Guid MobileRechargeTypeId { get; set; }
 
-        [Required]
         public Guid ServiceProviderId { get; set; }
     }
 
     public class ElectricityModel
     {
-        [Required]
         public string ConsumerNumber { get; set; }
 
-        [Required]
         public Guid ElectricityProviderId { get; set; }
     }
 }

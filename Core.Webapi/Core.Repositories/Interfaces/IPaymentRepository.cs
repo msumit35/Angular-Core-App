@@ -9,5 +9,7 @@ namespace Core.Repositories.Interfaces
     public interface IPaymentRepository : ICreateRepository<Payment>
     {
         Task<IEnumerable<Payment>> GetPaymentsByCreatedById(Guid id);
+
+        Task<IEnumerable<Payment>> GetPaymentsByIds(IEnumerable<Guid> ids);
     }
 }

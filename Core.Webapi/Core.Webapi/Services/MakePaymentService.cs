@@ -26,10 +26,12 @@ namespace Core.Webapi.Services
         {
             try
             {
-                var payment = new Payment();
-                payment.Amount = model.Amount;
-                payment.User = await _unitOfWork.UserRepository.GetByIdAsync(_userContext.UserId);
-                payment.PaymentMode = await _unitOfWork.PaymentModeRepository.GetByIdAsync(model.PaymentModeId);
+                var payment = new Payment
+                {
+                    Amount = model.Amount,
+                    User = await _unitOfWork.UserRepository.GetByIdAsync(_userContext.UserId),
+                    PaymentMode = await _unitOfWork.PaymentModeRepository.GetByIdAsync(model.PaymentModeId)
+                };
 
                 if (model.Status == PaymentStatus.Success)
                     payment.PaymentStatus = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("success");

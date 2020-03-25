@@ -16,11 +16,13 @@ namespace Core.Webapi.Controllers
     {
         private readonly IMobileRechargeService _mobileRechargeService;
         private readonly IPaymentService _paymentService;
+        private readonly IElectricityService _electricityService;
 
-        public PaymentController(IMobileRechargeService mobileRechargeService, IPaymentService paymentService)
+        public PaymentController(IMobileRechargeService mobileRechargeService, IPaymentService paymentService, IElectricityService electricityService)
         {
             _mobileRechargeService = mobileRechargeService;
             _paymentService = paymentService;
+            _electricityService = electricityService;
         }
 
         [HttpGet("Modes")]
@@ -58,7 +60,7 @@ namespace Core.Webapi.Controllers
                 }
                 else
                 {
-
+                    entity = await _electricityService.MakePaymentAsync(payment);
                 }
 
                 return Ok(new Response

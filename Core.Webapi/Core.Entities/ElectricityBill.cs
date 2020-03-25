@@ -6,6 +6,11 @@ namespace Core.Entities
 {
     public class ElectricityBill : CreateEntityBase
     {
+        public ElectricityBill()
+        {
+            PaymentElectricityBills = new List<LinkPaymentElectricityBill>();    
+        }
+
         public string ConsumerNumber { get; set; }
 
         public Guid ElectricityProviderId { get; set; }

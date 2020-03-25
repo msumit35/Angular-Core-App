@@ -42,7 +42,15 @@ namespace Core.Repositories
                                 .Include(x => x.PaymentMode)
                                 .ToListAsync();
         }
-        
+
+        public async Task<IEnumerable<Payment>> GetPaymentsByIds(IEnumerable<Guid> ids)
+        {
+            return await _payments.Where(x => ids.Contains(x.Id))
+                                    .Include(x => x.PaymentStatus)
+                                    .Include(x => x.PaymentMode)
+                                    .ToListAsync();
+        }
+
         public async Task<Payment> Create(Payment entity)
         {
             var result = await _payments.AddAsync(entity);

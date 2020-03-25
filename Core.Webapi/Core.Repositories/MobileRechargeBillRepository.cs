@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.DataAccessLayer;
@@ -31,6 +32,15 @@ namespace Core.Repositories
         public async Task<MobileRechargeBill> GetByIdAsync(Guid id)
         {
             return await _mobileRechargeBills.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<MobileRechargeBill>> GetMobileRechargeBillsByCreatedById(Guid id)
+        {
+            return await _mobileRechargeBills.Where(x => x.User.Id == id)
+                                            .Include(x => x.MobileRechargeType)
+                                            .Include(x => x.ServiceProvider)
+                                            .Include(x => x.PaymentsMobileRechargeBills)
+                                            .ToListAsync();
         }
 
         public async Task<MobileRechargeBill> Create(MobileRechargeBill entity)
