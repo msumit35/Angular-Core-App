@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { AuthenticateService } from './services/authenticate.service';
@@ -38,6 +39,7 @@ import { SidenavService } from './services/sidenav.service';
 import { ElectricityComponent } from './electricity/electricity.component';
 import { ElectricityRechargeDialog } from './electricity/recharge.dialog';
 import { ElectricityService } from './services/electricity.service';
+import { EditUserDialog } from './home/edit-user.dialog';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { ElectricityService } from './services/electricity.service';
     MobileRechargeComponent,
     ElectricityComponent,
     RechargeDialog,
-    ElectricityRechargeDialog
+    ElectricityRechargeDialog,
+    EditUserDialog
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import { ElectricityService } from './services/electricity.service';
     MatTableModule,
     MatRadioModule,
     MatSelectModule,
+    MatPaginatorModule,
     ToastrModule.forRoot()
   ],
   providers: [
@@ -86,7 +90,12 @@ import { ElectricityService } from './services/electricity.service';
     ElectricityService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent, RechargeDialog, ElectricityRechargeDialog]
+  entryComponents: [
+    DialogComponent,
+    RechargeDialog,
+    ElectricityRechargeDialog,
+    EditUserDialog
+  ]
   
 })
 export class AppModule { }

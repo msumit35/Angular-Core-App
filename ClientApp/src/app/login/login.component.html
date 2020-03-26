@@ -1,33 +1,29 @@
 <div class="login-content">
-  <mat-card class="card-content">
-    <div class="form-group section-title">Sign In!</div>
-    <hr>
-    <form #form="ngForm" (submit)="onSubmit()">
-      <div class="form-group">
-        <mat-form-field class="form-field" appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username" 
-          autocomplete="off" autofocus
-            required>
-          <mat-icon matSuffix>face</mat-icon>
-          <mat-hint>Hint: james35</mat-hint>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field class="form-field" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passowrd" name="Password"
-            [(ngModel)]="model.Password" required>
-          <button type="button" class="transparent-btn" mat-icon-button matSuffix (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-card class="card-content">
+        <div class="form-group section-title">Sign In!</div>
+        <hr>
+        <form #form="ngForm" (submit)="onSubmit()">
+            <div class="form-group">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" name="Username" [(ngModel)]="model.Username" autocomplete="off" autofocus required>
+                    <mat-icon matSuffix>face</mat-icon>
+                    <mat-hint>Hint: james35</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passowrd" name="Password" [(ngModel)]="model.Password" required>
+                    <button type="button" class="transparent-btn" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-hint>Hint: example@123</mat-hint>
-        </mat-form-field>
-      </div>
-      
-      <button type="submit" class="btn btn-primary login-btn" [disabled]="!form.valid">Login</button>
-      <a href='/register' class="register-link">I don't have an account</a>
-    </form>
-  </mat-card>
+                    <mat-hint>Hint: example@123</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <button type="submit" class="btn btn-primary login-btn" [disabled]="!form.valid">Login</button>
+            <a routerLink="/register" href="#" class="register-link">I don't have an account</a>
+        </form>
+    </mat-card>
 </div>

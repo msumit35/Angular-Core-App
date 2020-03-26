@@ -23,4 +23,11 @@ export class UserService {
                 return response;
             }));
     }
+
+    EditUser(id: string, model: User) {
+        return this._http.put(BaseUrl + this.controller + '/EditUser/' + id, model)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
 }

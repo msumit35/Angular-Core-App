@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
                 if (response.Status != 200) {
                     //show error
                     this.model.Password = '';
-                    this._toastrService.error(response.ErrorMessage, 'error');
+                    this._toastrService.error(response.ErrorMessage, 'Error');
                     return;
                 }
 
