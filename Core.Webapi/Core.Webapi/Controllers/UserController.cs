@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Webapi.Controllers
@@ -33,15 +34,25 @@ namespace Core.Webapi.Controllers
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _userService.GetUsersAsync();
-            var response = new List<UserModel>();
-
-            foreach (var item in users)
+            try
             {
-                response.Add(new UserModel(item, null));
-            }
+                var users = await _userService.GetUsersAsync();
+                var response = new List<UserModel>();
 
-            return Ok(response);
+                foreach (var item in users)
+                {
+                    response.Add(new UserModel(item, null));
+                }
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
         }
 
         [AllowAnonymous]
@@ -77,6 +88,27 @@ namespace Core.Webapi.Controllers
                 });
             }
             catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpPut("EditUser/{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UserModel model)
+        {
+            try
+            {
+                await _userService.UpdateUserAsync(id, model);
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response
                 {

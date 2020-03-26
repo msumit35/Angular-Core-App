@@ -16,5 +16,7 @@ namespace Core.Webapi.Services.Interfaces
         Task<User> GetUserByUserNameAsync(string username);
 
         Task<User> CreateAsync(UserModel model);
+
+        Task UpdateUserAsync(Guid id, UserModel model);
     }
 }

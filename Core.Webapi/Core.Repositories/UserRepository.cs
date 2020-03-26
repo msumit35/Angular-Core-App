@@ -52,7 +52,7 @@ namespace Core.Repositories
 
         public async Task<bool> IsUserExists(string username, string email)
         {
-            return  _context.Users.Any(x => x.UserName.ToLower().Equals(username.ToLower()) || x.EmailId.ToLower().Equals(email.ToLower()));
+            return await _context.Users.AnyAsync(x => x.UserName.ToLower().Equals(username.ToLower()) || x.EmailId.ToLower().Equals(email.ToLower()));
         }
     }
 }

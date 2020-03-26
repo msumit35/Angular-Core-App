@@ -46,5 +46,22 @@ namespace Core.Webapi.Services
 
             return entity;
         }
+
+        public async Task UpdateUserAsync(Guid id, UserModel model)
+        {
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+
+            if (user == null)
+            {
+                throw new Exception($"User not found. UserId: {id}");
+            }
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.UserName = model.Username;
+
+            await _unitOfWork.UserRepository.Update(user);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }
