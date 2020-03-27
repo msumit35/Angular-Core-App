@@ -7,4 +7,6 @@ export class User
     Email: string;
     Username: string;
     Token: string;
+    IsActivated: boolean;
+    IsDeleted: boolean;
 }

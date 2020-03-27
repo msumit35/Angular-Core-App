@@ -5,8 +5,12 @@ import { SidenavService } from '../services/sidenav.service';
 import { NavigationLinks } from '../app.navigation';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '../../../node_modules/@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialog } from './edit-user.dialog';
+import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { SpinnerService } from '../services/spinner.service';
+import { map } from '../../../node_modules/rxjs/operators';
 
 @Component({
     selector: 'app-home',
@@ -17,7 +21,8 @@ export class HomeComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private _userService: UserService, private _sidenav: SidenavService,
-        private _dialog: MatDialog) {
+        private _dialog: MatDialog, private _toastrService: ToastrService,
+        private _spinnerService: SpinnerService) {
         this.GetAllUsers();
         this._sidenav.ActiveLink(NavigationLinks.Home);
     }
@@ -47,5 +52,27 @@ export class HomeComponent implements OnInit {
                 (error) => {
                     console.log('HomeComponent-GetAllUsers', error);
                 });
+    }
+
+    ActivateUser(id: string) {
+        this._spinnerService.ProcessingOn();
+
+        this._userService.ActivateUser(id)
+            .subscribe((response) => {
+                this._spinnerService.ProcessingOff();
+                this._toastrService.info('User has been activated', 'Info');
+                this.GetAllUsers();
+            });
+    }
+
+    DeactivateUser(id: string) {
+        this._spinnerService.ProcessingOn();
+
+        this._userService.DeactivateUser(id)
+            .subscribe((response) => {
+                this._spinnerService.ProcessingOff();
+                this._toastrService.warning('User has been deactivated', 'Warning');
+                this.GetAllUsers();
+            });
     }
 }

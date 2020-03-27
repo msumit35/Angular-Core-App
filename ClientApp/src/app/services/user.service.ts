@@ -14,7 +14,10 @@ export class UserService {
     }
 
     GetAllUsers() {
-        return this._http.get<User[]>(BaseUrl + this.controller + '/GetAllUsers');
+        return this._http.get<User[]>(BaseUrl + this.controller + '/GetAllUsers')
+                .pipe(map((response: any) => {
+                    return response.Data;
+                }));
     }
 
     CreateUser(model: Register): Observable<any> {
@@ -26,6 +29,20 @@ export class UserService {
 
     EditUser(id: string, model: User) {
         return this._http.put(BaseUrl + this.controller + '/EditUser/' + id, model)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    ActivateUser(id: string) {
+        return this._http.options(BaseUrl + this.controller + '/Activate/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    DeactivateUser(id: string) {
+        return this._http.delete(BaseUrl + this.controller + '/Deactivate/' + id)
             .pipe(map((response: any) => {
                 return response.Data;
             }));
