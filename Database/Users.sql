@@ -5,6 +5,7 @@
 	[Username] [nvarchar](50) NOT NULL,
 	[EmailId] [nvarchar](50) NOT NULL,
 	[Password] [nvarchar](max) NOT NULL,
+	[IsActivated] [bit] NOT NULL,
 	[CreatedById] [uniqueidentifier] NOT NULL,
 	[CreatedOn] [datetimeoffset](7) NOT NULL,
 	[LastUpdatedOn] [datetimeoffset](7) NULL,

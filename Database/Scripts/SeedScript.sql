@@ -1,9 +1,9 @@
 ﻿
 --Users
-INSERT [dbo].[Users] ([Id], [FirstName], [LastName], [Username], [EmailId], [Password], [CreatedById], [CreatedOn], [LastUpdatedOn], [RemovedOn])
+INSERT [dbo].[Users] ([Id], [FirstName], [LastName], [Username], [EmailId], [Password], [IsActivated], [CreatedById], [CreatedOn], [LastUpdatedOn], [RemovedOn])
 VALUES 
 (N'ab3c1a56-50bf-4aad-a481-49ab73e3bcee', N'Sumit', N'Mahajan', N'msumit35', N'msumit35@gmail.com', 
-N'Q0Ew/2K7VKzAVG7DLomjSUfJjjvaexqD8X/90mqvZPM=', 'ab3c1a56-50bf-4aad-a481-49ab73e3bcee', CAST(N'2020-03-23T23:34:56.3622943+05:30' AS DateTimeOffset), NULL, NULL)
+N'Q0Ew/2K7VKzAVG7DLomjSUfJjjvaexqD8X/90mqvZPM=', 1, 'ab3c1a56-50bf-4aad-a481-49ab73e3bcee', CAST(N'2020-03-23T23:34:56.3622943+05:30' AS DateTimeOffset), NULL, NULL)
 
 --ElectricityProviders
 INSERT INTO ElectricityProviders (Id, Name)
