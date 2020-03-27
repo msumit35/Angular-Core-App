@@ -46,6 +46,16 @@ namespace Core.Webapi.Controllers
                     });
                 }
 
+                if (!user.IsActivated || user.RemovedOn != null)
+                {
+                    return Ok(new Response
+                    {
+                        Status = (int)ResponseStatus.AccountDeactivated,
+                        Data = null,
+                        ErrorMessage = "Your account has been deactivated. Please contact administrator"
+                    });
+                }
+
                 if (Hasher.Verify(authenticate.Password, user.Password))
                 {
                     var model = new UserModel(user, _jwtTokenService.GetToken(user));

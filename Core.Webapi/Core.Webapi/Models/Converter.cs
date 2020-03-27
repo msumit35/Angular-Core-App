@@ -13,7 +13,8 @@ namespace Core.Webapi.Models
                 LastName = model.LastName,
                 UserName = model.Username,
                 EmailId = model.Email,
-                Password = Hasher.GetHash(model.Password)
+                Password = Hasher.GetHash(model.Password),
+                IsActivated = true
             };
 
             return user;

@@ -34,14 +34,15 @@ namespace Core.Repositories
             return obj.Entity;
         }
 
-        public async Task Update(User entity)
+        public async Task UpdateAsync(User entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public int Remove(User entity)
+        public async Task RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await GetByIdAsync(id);
+            entity.RemovedOn = DateTimeOffset.Now;
         }
 
         public async Task<User> GetUserByUserName(string userName)
@@ -53,6 +54,18 @@ namespace Core.Repositories
         public async Task<bool> IsUserExists(string username, string email)
         {
             return await _context.Users.AnyAsync(x => x.UserName.ToLower().Equals(username.ToLower()) || x.EmailId.ToLower().Equals(email.ToLower()));
+        }
+
+        public async Task ActivateUserAsync(Guid id)
+        {
+            var entity = await GetByIdAsync(id);
+            entity.IsActivated = true;
+        }
+
+        public async Task DeactivatedUser(Guid id)
+        {
+            var entity = await GetByIdAsync(id);
+            entity.IsActivated = false;
         }
     }
 }

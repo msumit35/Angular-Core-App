@@ -33,15 +33,5 @@ namespace Core.Repositories
             var obj = _context.ExceptionLogs.Add(entity);
             return obj.Entity;
         }
-
-        public Task Update(ExceptionLog entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(ExceptionLog entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

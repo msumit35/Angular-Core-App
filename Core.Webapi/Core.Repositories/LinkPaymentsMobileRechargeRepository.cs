@@ -33,15 +33,5 @@ namespace Core.Repositories
             var result = await _context.LinkPaymentsMobileRechargeBills.AddAsync(entity);
             return result.Entity;
         }
-
-        public Task Update(LinkPaymentMobileRechargeBill entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(LinkPaymentMobileRechargeBill entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

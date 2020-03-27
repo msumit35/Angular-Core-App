@@ -32,15 +32,5 @@ namespace Core.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public Task Update(LinkPaymentElectricityBill entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Remove(LinkPaymentElectricityBill entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -7,8 +7,8 @@ namespace Core.Repositories.Interfaces
 {
     public interface ICrudRepository<T> : ICreateRepository<T>
     {
-        Task Update(T entity);
+        Task UpdateAsync(T entity);
 
-        int Remove(T entity);
+        Task RemoveAsync(Guid id);
     }
 }

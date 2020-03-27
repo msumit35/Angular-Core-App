@@ -27,6 +27,10 @@ namespace Core.Webapi.Models
 
         public string Token { get; set; }
 
+        public bool IsActivated { get; set; }
+
+        public bool IsDeleted  { get; set; }
+
         public UserModel()
         {
 
@@ -40,6 +44,8 @@ namespace Core.Webapi.Models
             Email = user.EmailId;
             Username = user.UserName;
             Token = token;
+            IsActivated = user.IsActivated;
+            IsDeleted = user.RemovedOn != null;
         }
     }
 }

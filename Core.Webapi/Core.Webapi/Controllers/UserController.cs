@@ -37,14 +37,12 @@ namespace Core.Webapi.Controllers
             try
             {
                 var users = await _userService.GetUsersAsync();
-                var response = new List<UserModel>();
 
-                foreach (var item in users)
+                return Ok(new Response
                 {
-                    response.Add(new UserModel(item, null));
-                }
-
-                return Ok(response);
+                    Status = 200,
+                    Data = users
+                });
             }
             catch (Exception e)
             {
@@ -102,6 +100,50 @@ namespace Core.Webapi.Controllers
             try
             {
                 await _userService.UpdateUserAsync(id, model);
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpOptions("Activate/{id}")]
+        public async Task<IActionResult> ActivateUser(Guid id)
+        {
+            try
+            {
+                await _userService.ActivateUserAsync(id);
+
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpDelete("Deactivate/{id}")]
+        public async Task<IActionResult> DeactivateUser(Guid id)
+        {
+            try
+            {
+                await _userService.DeactivateUserAsync(id);
+
                 return Ok(new Response
                 {
                     Status = 200,

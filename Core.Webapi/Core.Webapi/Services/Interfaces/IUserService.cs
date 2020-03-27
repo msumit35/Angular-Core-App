@@ -11,12 +11,16 @@ namespace Core.Webapi.Services.Interfaces
     {
         Task<bool> IsUserExistsAsync(string username, string email);
 
-        Task<IEnumerable<User>> GetUsersAsync();
+        Task<IEnumerable<UserModel>> GetUsersAsync();
 
         Task<User> GetUserByUserNameAsync(string username);
 
         Task<User> CreateAsync(UserModel model);
 
         Task UpdateUserAsync(Guid id, UserModel model);
+
+        Task DeactivateUserAsync(Guid id);
+
+        Task ActivateUserAsync(Guid id);
     }
 }

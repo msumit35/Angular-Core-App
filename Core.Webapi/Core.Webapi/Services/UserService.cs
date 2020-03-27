@@ -26,9 +26,17 @@ namespace Core.Webapi.Services
             return _unitOfWork.UserRepository.IsUserExists(username, email);
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<IEnumerable<UserModel>> GetUsersAsync()
         {
-            return await _unitOfWork.UserRepository.GetAllAsync();
+            var users = await _unitOfWork.UserRepository.GetAllAsync();
+            var response = new List<UserModel>();
+
+            foreach (var item in users)
+            {
+                response.Add(new UserModel(item, null));
+            }
+
+            return response;
         }
 
         public async Task<User> GetUserByUserNameAsync(string username)
@@ -60,7 +68,19 @@ namespace Core.Webapi.Services
             user.LastName = model.LastName;
             user.UserName = model.Username;
 
-            await _unitOfWork.UserRepository.Update(user);
+            await _unitOfWork.UserRepository.UpdateAsync(user);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        
+        public async Task DeactivateUserAsync(Guid id)
+        {
+            await _unitOfWork.UserRepository.DeactivatedUser(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task ActivateUserAsync(Guid id)
+        {
+            await _unitOfWork.UserRepository.ActivateUserAsync(id);
             await _unitOfWork.SaveChangesAsync();
         }
     }

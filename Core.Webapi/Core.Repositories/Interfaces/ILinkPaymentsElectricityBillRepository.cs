@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface ILinkPaymentsElectricityBillRepository : ICrudRepository<LinkPaymentElectricityBill>
+    public interface ILinkPaymentsElectricityBillRepository : ICreateRepository<LinkPaymentElectricityBill>
     {
     }
 }
