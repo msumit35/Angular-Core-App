@@ -23,7 +23,7 @@ namespace Core.Webapi.Services
 
         public Task<bool> IsUserExistsAsync(string username, string email)
         {
-            return _unitOfWork.UserRepository.IsUserExists(username, email);
+            return _unitOfWork.UserRepository.IsUserExistsAsync(username, email);
         }
 
         public async Task<IEnumerable<UserModel>> GetUsersAsync()
@@ -41,7 +41,7 @@ namespace Core.Webapi.Services
 
         public async Task<User> GetUserByUserNameAsync(string username)
         {
-            return await _unitOfWork.UserRepository.GetUserByUserName(username);
+            return await _unitOfWork.UserRepository.GetUserByUserNameAsync(username);
         }
 
         public async Task<User> CreateAsync(UserModel model)
@@ -74,13 +74,25 @@ namespace Core.Webapi.Services
         
         public async Task DeactivateUserAsync(Guid id)
         {
-            await _unitOfWork.UserRepository.DeactivatedUser(id);
+            await _unitOfWork.UserRepository.DeactivatedUserAsync(id);
             await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task ActivateUserAsync(Guid id)
         {
             await _unitOfWork.UserRepository.ActivateUserAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteUserAsync(Guid id)
+        {
+            await _unitOfWork.UserRepository.RemoveAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UnDeleteUserAsync(Guid id)
+        {
+            await _unitOfWork.UserRepository.UndoRemoveAsync(id);
             await _unitOfWork.SaveChangesAsync();
         }
     }

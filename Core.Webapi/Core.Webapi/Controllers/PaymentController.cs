@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Webapi.Services.Interfaces;
+using PaymentStatus = Core.Webapi.Models.PaymentStatus;
 
 namespace Core.Webapi.Controllers
 {
@@ -63,11 +64,21 @@ namespace Core.Webapi.Controllers
                     entity = await _electricityService.MakePaymentAsync(payment);
                 }
 
+                if (entity != null && entity.Id != Guid.Empty && entity.PaymentStatus.Name == PaymentStatus.Success.ToString())
+                {
+                    return Ok(new Response
+                    {
+                        Status = 200,
+                        Data = new { TransactionId = entity.Id, Status = entity.PaymentStatus.Name }
+                    });
+                }
+
                 return Ok(new Response
                 {
-                    Status = 200,
-                    Data = entity.Id
+                    Status = 301,
+                    Data = new { TransactionId = entity.Id, Status = entity.PaymentStatus.Name, ErrorMessage = entity.FailureDescription }
                 });
+
             }
             catch (Exception e)
             {

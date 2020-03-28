@@ -73,9 +73,6 @@ namespace Core.Webapi
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
 
-            services.AddScoped<ILinkPaymentsMobileRechargeRepository, LinkPaymentsMobileRechargeRepository>();
-            services.AddScoped<ILinkPaymentsElectricityBillRepository, LinkPaymentsElectricityBillRepository>();
-
             services.AddScoped<IMobileRechargeService, MobileRechargeService>();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IUserService, UserService>();

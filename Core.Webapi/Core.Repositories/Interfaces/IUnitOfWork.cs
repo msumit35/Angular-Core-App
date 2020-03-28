@@ -25,10 +25,6 @@ namespace Core.Repositories.Interfaces
 
         IServiceProviderRepository ServiceProviderRepository { get; }
 
-        ILinkPaymentsMobileRechargeRepository LinkPaymentsMobileRechargeRepository { get; }
-
-        ILinkPaymentsElectricityBillRepository LinkPaymentsElectricityBillRepository { get; }
-
         Task<int> SaveChangesAsync();
     }
 }

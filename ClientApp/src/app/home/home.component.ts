@@ -75,4 +75,26 @@ export class HomeComponent implements OnInit {
                 this.GetAllUsers();
             });
     }
+
+    DeleteUser(id: string) {
+        this._spinnerService.ProcessingOn();
+
+        this._userService.DeleteUser(id)
+            .subscribe((response) => {
+                this._spinnerService.ProcessingOff();
+                this._toastrService.warning('User has been deleted', 'Warning');
+                this.GetAllUsers();
+            });
+    }
+
+    UnDeleteUser(id: string) {
+        this._spinnerService.ProcessingOn();
+
+        this._userService.UnDeleteUser(id)
+            .subscribe((response) => {
+                this._spinnerService.ProcessingOff();
+                this._toastrService.warning('User has been undeleted', 'Warning');
+                this.GetAllUsers();
+            });
+    }
 }

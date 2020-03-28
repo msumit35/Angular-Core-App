@@ -22,7 +22,7 @@ export class PaymentService {
 
     MakePayment(model: any) {
         return this._http.post(BaseUrl + this.controller + '/MakePayment', model)
-            .pipe(map((response) => {
+            .pipe(map((response: any) => {
                 return response;
             }));
     }

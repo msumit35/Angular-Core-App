@@ -45,13 +45,13 @@
                         done
                     </mat-icon>
                 </button>
-                <button type="button" title="Delete User" *ngIf="!row.IsDeleted" class="transparent-btn" (click)="DeleteeUser(row.UserId)">
+                <button type="button" title="Delete User" *ngIf="!row.IsDeleted" class="transparent-btn" (click)="DeleteUser(row.UserId)">
                     <mat-icon class="text-danger" aria-hidden="false" aria-label="delete icon">
                         delete
                     </mat-icon>
                 </button>
-                <button type="button" title="Undelete" *ngIf="row.IsDeleted" class="transparent-btn" (click)="UnDeleteUser(row.UserId)">
-                    <mat-icon class="text-danger" aria-hidden="false" aria-label="refresh icon">
+                <button type="button" title="Undelete User" *ngIf="row.IsDeleted" class="transparent-btn" (click)="UnDeleteUser(row.UserId)">
+                    <mat-icon class="text-success" aria-hidden="false" aria-label="refresh icon">
                         refresh
                     </mat-icon>
                 </button>

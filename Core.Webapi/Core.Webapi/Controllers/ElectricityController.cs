@@ -54,12 +54,12 @@ namespace Core.Webapi.Controllers
         {
             try
             {
-                var providers = await _electricityService.GetElectricityBills();
+                var bills = await _electricityService.GetElectricityBills();
 
                 return Ok(new Response
                 {
                     Status = (int)ResponseStatus.Success,
-                    Data = providers
+                    Data = bills
                 });
             }
             catch (Exception ex)

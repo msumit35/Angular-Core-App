@@ -42,7 +42,21 @@ export class UserService {
     }
 
     DeactivateUser(id: string) {
-        return this._http.delete(BaseUrl + this.controller + '/Deactivate/' + id)
+        return this._http.options(BaseUrl + this.controller + '/Deactivate/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    DeleteUser(id: string) {
+        return this._http.delete(BaseUrl + this.controller + '/Delete/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    UnDeleteUser(id: string) {
+        return this._http.options(BaseUrl + this.controller + '/UnDelete/' + id)
             .pipe(map((response: any) => {
                 return response.Data;
             }));

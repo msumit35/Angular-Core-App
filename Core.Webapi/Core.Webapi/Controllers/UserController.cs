@@ -137,12 +137,56 @@ namespace Core.Webapi.Controllers
             }
         }
 
-        [HttpDelete("Deactivate/{id}")]
+        [HttpOptions("Deactivate/{id}")]
         public async Task<IActionResult> DeactivateUser(Guid id)
         {
             try
             {
                 await _userService.DeactivateUserAsync(id);
+
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteUser(Guid id)
+        {
+            try
+            {
+                await _userService.DeleteUserAsync(id);
+
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpOptions("UnDelete/{id}")]
+        public async Task<IActionResult> UnDeleteUser(Guid id)
+        {
+            try
+            {
+                await _userService.UnDeleteUserAsync(id);
 
                 return Ok(new Response
                 {

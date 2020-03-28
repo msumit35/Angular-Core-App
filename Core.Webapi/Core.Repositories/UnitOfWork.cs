@@ -15,8 +15,7 @@ namespace Core.Repositories
             IElectricityBillRepository electricityBillRepository, IElectricityProviderRepository electricityProviderRepository,
             IMobileRechargeBillRepository mobileRechargeBillRepository, IMobileRechargeTypeRepository mobileRechargeTypeRepository,
             IPaymentModeRepository paymentModeRepository, IPaymentRepository paymentRepository, IPaymentStatusRepository paymentStatusRepository,
-            IServiceProviderRepository serviceProviderRepository, ILinkPaymentsElectricityBillRepository linkPaymentsElectricityBillRepository,
-            ILinkPaymentsMobileRechargeRepository linkPaymentsMobileRechargeRepository)
+            IServiceProviderRepository serviceProviderRepository)
         {
             _context = context;
             UserRepository = userRepository;
@@ -29,8 +28,6 @@ namespace Core.Repositories
             PaymentRepository = paymentRepository;
             PaymentStatusRepository = paymentStatusRepository;
             ServiceProviderRepository = serviceProviderRepository;
-            LinkPaymentsElectricityBillRepository = linkPaymentsElectricityBillRepository;
-            LinkPaymentsMobileRechargeRepository = linkPaymentsMobileRechargeRepository;
         }
 
         public IUserRepository UserRepository { get; }
@@ -50,9 +47,8 @@ namespace Core.Repositories
         public IPaymentRepository PaymentRepository { get; }
 
         public IPaymentStatusRepository PaymentStatusRepository { get; }
+
         public IServiceProviderRepository ServiceProviderRepository { get; }
-        public ILinkPaymentsElectricityBillRepository LinkPaymentsElectricityBillRepository { get; set; }
-        public ILinkPaymentsMobileRechargeRepository LinkPaymentsMobileRechargeRepository { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {

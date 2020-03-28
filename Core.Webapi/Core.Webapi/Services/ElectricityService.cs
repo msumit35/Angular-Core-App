@@ -35,7 +35,6 @@ namespace Core.Webapi.Services
                 var bills = await _unitOfWork.ElectricityBillRepository.GetElectricityBillsByCreatedById(_userContext.UserId);
                 var paymentIds = bills.Select(s => s.PaymentElectricityBills.FirstOrDefault()?.PaymentId ?? Guid.Empty);
                 var payments = await _unitOfWork.PaymentRepository.GetPaymentsByIds(paymentIds);
-                var paymentsBillsLink = await _unitOfWork.LinkPaymentsElectricityBillRepository.GetAllAsync();
 
                 var list = from b in bills
                     join p in payments on b.PaymentElectricityBills.FirstOrDefault()?.PaymentId equals p.Id

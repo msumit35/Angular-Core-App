@@ -56,14 +56,19 @@ export class RechargeDialog {
     this._paymentService.MakePayment(this.paymentModel)
       .subscribe((response) => {
         this._spinnerService.ProcessingOff();
-        this._toastrService.success('Payment has been done successfully', 'Success');
+
+        if (response.Status != 200) {
+          this._toastrService.error(response.Data.ErrorMessage, 'Error');
+        }
+        else {
+          this._toastrService.success('Payment has been done successfully', 'Success');
+        }
         this.closeDialog(true);
-        console.log('Response Make Payment->', response);
       },
-      (error) => {
-        this._spinnerService.ProcessingOff();
-        this.dialogRef.close();
-        console.log('RechargeDialog->onSubmit', error);
-      });
+        (error) => {
+          this._spinnerService.ProcessingOff();
+          this.dialogRef.close();
+          console.log('RechargeDialog->onSubmit', error);
+        });
   }
 }

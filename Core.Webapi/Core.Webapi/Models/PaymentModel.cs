@@ -9,6 +9,8 @@ namespace Core.Webapi.Models
 {
     public class PaymentModel
     {
+        public Guid TransactionId { get; set; }
+
         [Required]
         public PaymentModule Module { get; set; }
 

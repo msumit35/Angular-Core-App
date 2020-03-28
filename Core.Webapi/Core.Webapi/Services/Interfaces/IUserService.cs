@@ -22,5 +22,9 @@ namespace Core.Webapi.Services.Interfaces
         Task DeactivateUserAsync(Guid id);
 
         Task ActivateUserAsync(Guid id);
+
+        Task DeleteUserAsync(Guid id);
+
+        Task UnDeleteUserAsync(Guid id);
     }
 }

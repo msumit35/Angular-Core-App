@@ -30,6 +30,8 @@ namespace Core.Webapi.Services
 
                 Thread.Sleep(new Random().Next(3000,6000));
 
+                var status = new Random().Next(1, 2);
+
                 var payment = new Payment
                 {
                     Amount = model.Amount,
@@ -37,7 +39,7 @@ namespace Core.Webapi.Services
                     PaymentMode = await _unitOfWork.PaymentModeRepository.GetByIdAsync(model.PaymentModeId)
                 };
 
-                if (model.Status == PaymentStatus.Success)
+                if (status == (int)PaymentStatus.Success)
                     payment.PaymentStatus = await _unitOfWork.PaymentStatusRepository.GetByNameAsync("success");
                 else
                 {

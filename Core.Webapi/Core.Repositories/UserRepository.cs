@@ -45,13 +45,13 @@ namespace Core.Repositories
             entity.RemovedOn = DateTimeOffset.Now;
         }
 
-        public async Task<User> GetUserByUserName(string userName)
+        public async Task<User> GetUserByUserNameAsync(string userName)
         {
             return await _context.Users.SingleOrDefaultAsync(x =>
                 x.UserName.ToLower().Equals(userName.ToLower()));
         }
 
-        public async Task<bool> IsUserExists(string username, string email)
+        public async Task<bool> IsUserExistsAsync(string username, string email)
         {
             return await _context.Users.AnyAsync(x => x.UserName.ToLower().Equals(username.ToLower()) || x.EmailId.ToLower().Equals(email.ToLower()));
         }
@@ -62,10 +62,16 @@ namespace Core.Repositories
             entity.IsActivated = true;
         }
 
-        public async Task DeactivatedUser(Guid id)
+        public async Task DeactivatedUserAsync(Guid id)
         {
             var entity = await GetByIdAsync(id);
             entity.IsActivated = false;
+        }
+
+        public async Task UndoRemoveAsync(Guid id)
+        {
+            var entity = await GetByIdAsync(id);
+            entity.RemovedOn = null;
         }
     }
 }
