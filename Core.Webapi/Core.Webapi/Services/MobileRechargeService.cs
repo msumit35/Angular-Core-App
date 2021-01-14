@@ -37,12 +37,12 @@ namespace Core.Webapi.Services
             try
             {
                 var bills = await _unitOfWork.MobileRechargeBillRepository.GetMobileRechargeBillsByCreatedById(_userContext.UserId);
-                var paymentIds = bills.Select(s => s.PaymentsMobileRechargeBills.FirstOrDefault()?.PaymentId ?? Guid.Empty);
-                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByIds(paymentIds);
+                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByCreatedById(_userContext.UserId);
 
                 var list = from b in bills
-                           join p in payments on b.PaymentsMobileRechargeBills.FirstOrDefault()?.PaymentId equals p.Id
-                           select new MobileRechargeBillModel
+                            join p in payments
+                            on b.PaymentsMobileRechargeBills.Single().PaymentId equals p.Id
+                            select new MobileRechargeBillModel
                            {
                                MobileNumber = b.MobileNumber,
                                Status = p.PaymentStatus.Name,
@@ -61,12 +61,10 @@ namespace Core.Webapi.Services
             }
         }
 
-        public override async Task<Payment> MakePaymentAsync(PaymentModel model)
+        protected override async Task ProcessPaymentAsync(PaymentModel model, Payment payment)
         {
             try
             {
-                var payment = await base.MakePaymentAsync(model);
-
                 var mobileRecharge = new MobileRechargeBill
                 {
                     MobileRechargeType =
@@ -88,8 +86,6 @@ namespace Core.Webapi.Services
 
                 await _unitOfWork.MobileRechargeBillRepository.Create(mobileRecharge);
                 await _unitOfWork.SaveChangesAsync();
-
-                return payment;
             }
             catch (Exception e)
             {

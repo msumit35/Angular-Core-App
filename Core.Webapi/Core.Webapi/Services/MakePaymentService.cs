@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +28,6 @@ namespace Core.Webapi.Services
         {
             try
             {
-
                 Thread.Sleep(new Random().Next(3000,6000));
 
                 var status = new Random().Next(1, 2);
@@ -48,6 +48,7 @@ namespace Core.Webapi.Services
                 }
 
                 payment = await _unitOfWork.PaymentRepository.Create(payment);
+                await ProcessPaymentAsync(model, payment);
 
                 return payment;
             }
@@ -56,5 +57,7 @@ namespace Core.Webapi.Services
                 throw;
             }
         }
+
+        protected abstract Task ProcessPaymentAsync(PaymentModel model, Payment payment);
     }
 }

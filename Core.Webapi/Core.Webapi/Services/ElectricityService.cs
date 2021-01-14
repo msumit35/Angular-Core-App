@@ -33,20 +33,19 @@ namespace Core.Webapi.Services
             try
             {
                 var bills = await _unitOfWork.ElectricityBillRepository.GetElectricityBillsByCreatedById(_userContext.UserId);
-                var paymentIds = bills.Select(s => s.PaymentElectricityBills.FirstOrDefault()?.PaymentId ?? Guid.Empty);
-                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByIds(paymentIds);
+                var payments = await _unitOfWork.PaymentRepository.GetPaymentsByCreatedById(_userContext.UserId);
 
                 var list = from b in bills
-                    join p in payments on b.PaymentElectricityBills.FirstOrDefault()?.PaymentId equals p.Id
-                    select new ElectricityBillModel
-                    {
-                        ConsumerNumber = b.ConsumerNumber,
-                        Provider = b.Provider.Name,
-                        Status = p.PaymentStatus.Name,
-                        PaymentMode = p.PaymentMode.Name,
-                        Amount = p.Amount,
-                        CreatedOn = p.CreatedOn
-                    };
+                           join p in payments on b.PaymentElectricityBills.First().Payment.Id equals p.Id
+                           select new ElectricityBillModel
+                           {
+                               ConsumerNumber = b.ConsumerNumber,
+                               Provider = b.Provider.Name,
+                               Status = p.PaymentStatus.Name,
+                               PaymentMode = p.PaymentMode.Name,
+                               Amount = p.Amount,
+                               CreatedOn = p.CreatedOn
+                           };
 
                 return list;
             }
@@ -56,12 +55,10 @@ namespace Core.Webapi.Services
             }
         }
 
-        public override async Task<Payment> MakePaymentAsync(PaymentModel model)
+        protected override async Task ProcessPaymentAsync(PaymentModel model, Payment payment)
         {
             try
             {
-                var payment = await base.MakePaymentAsync(model);
-
                 var electricityBill = new ElectricityBill
                 {
                     ConsumerNumber = model.ElectricityRecharge.ConsumerNumber,
@@ -81,8 +78,6 @@ namespace Core.Webapi.Services
                 await _unitOfWork.ElectricityBillRepository.Create(electricityBill);
 
                 await _unitOfWork.SaveChangesAsync();
-
-                return payment;
             }
             catch (Exception e)
             {
