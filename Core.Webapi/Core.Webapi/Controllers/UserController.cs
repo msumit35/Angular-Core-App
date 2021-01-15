@@ -31,6 +31,21 @@ namespace Core.Webapi.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
+        [HttpGet("GetTestData")]
+        public async Task<string> TestData()
+        {
+            return "Its working...";
+        }
+
+        [AllowAnonymous]
+        [HttpGet("GetTestDbData")]
+        public async Task<string> TestDbData()
+        {
+            var test = (await _userService.GetUsersAsync()).FirstOrDefault()?.FirstName;
+            return test;
+        }
+
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
