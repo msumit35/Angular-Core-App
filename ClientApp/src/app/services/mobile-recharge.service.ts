@@ -33,4 +33,11 @@ export class MobileService {
                     return response.Data;
                 }));
     }
+
+    MakePayment(model: any) {
+        return this._http.post(BaseUrl + this.controller + '/MakePayment', model)
+            .pipe(map((response: any) => {
+                return response;
+            }));
+    }
 }

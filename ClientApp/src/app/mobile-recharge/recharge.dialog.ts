@@ -53,7 +53,7 @@ export class RechargeDialog {
   onSubmit() {
     this._spinnerService.ProcessingOn();
     console.log('Make Payment Model..', this.paymentModel);
-    this._paymentService.MakePayment(this.paymentModel)
+    this._mobileService.MakePayment(this.paymentModel)
       .subscribe((response) => {
         this._spinnerService.ProcessingOff();
 
