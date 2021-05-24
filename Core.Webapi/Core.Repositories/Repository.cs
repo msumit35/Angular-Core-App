@@ -9,20 +9,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class ExceptionLogRepository : Repository<ExceptionLog>, IExceptionLogRepository
+    public class Repository<T> : IRepository<T>
+        where T : EntityBase
     {
         private readonly CoreContext _context;
 
-        public ExceptionLogRepository(CoreContext context)
-            : base(context)
+        public Repository(CoreContext context)
         {
             _context = context;
         }
 
-        public async Task<ExceptionLog> Create(ExceptionLog entity)
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            var obj = await _context.ExceptionLogs.AddAsync(entity);
-            return obj.Entity;
+            return await _context.Set<T>().ToListAsync();
+        }
+
+        public virtual async Task<T> GetByIdAsync(Guid id)
+        {
+            return await _context.Set<T>().FindAsync(id);
         }
     }
 }

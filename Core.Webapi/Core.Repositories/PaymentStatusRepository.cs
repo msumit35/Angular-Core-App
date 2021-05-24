@@ -9,25 +9,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class PaymentStatusRepository : IPaymentStatusRepository
+    public class PaymentStatusRepository : Repository<PaymentStatus>, IPaymentStatusRepository
     {
-        private readonly CoreContext _context;
         private readonly DbSet<PaymentStatus> _paymentStatuses;
 
         public PaymentStatusRepository(CoreContext context)
+            : base(context)
         {
-            _context = context;
             _paymentStatuses = context.PaymentStatuses;
-        }
-
-        public async Task<IEnumerable<PaymentStatus>> GetAllAsync()
-        {
-            return await _paymentStatuses.ToListAsync();
-        }
-
-        public async Task<PaymentStatus> GetByIdAsync(Guid id)
-        {
-            return await _paymentStatuses.FindAsync(id);
         }
 
         public async Task<PaymentStatus> GetByNameAsync(string name)

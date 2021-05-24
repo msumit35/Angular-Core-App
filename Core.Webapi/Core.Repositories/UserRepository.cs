@@ -9,28 +9,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         private readonly CoreContext _context;
 
         public UserRepository(CoreContext context)
+            : base(context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
-        {
-            return await _context.Users.ToListAsync();
-        }
-
-        public async Task<User> GetByIdAsync(Guid id)
-        {
-            return await _context.Users.FindAsync(id);
-        }
-
         public async Task<User> Create(User entity)
         {
-            var obj = _context.Users.Add(entity);
+            var obj = await _context.Users.AddAsync(entity);
             return obj.Entity;
         }
 

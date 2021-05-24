@@ -9,25 +9,21 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories
 {
-    public class ElectricityBillRepository : IElectricityBillRepository
+    public class ElectricityBillRepository : Repository<ElectricityBill>, IElectricityBillRepository
     {
         private readonly CoreContext _context;
         private readonly DbSet<ElectricityBill> _electricityBills;
 
         public ElectricityBillRepository(CoreContext context)
+            : base(context)
         {
             _context = context;
             _electricityBills = _context.ElectricityBills;
         }
 
-        public async Task<IEnumerable<ElectricityBill>> GetAllAsync()
+        public override async Task<IEnumerable<ElectricityBill>> GetAllAsync()
         {
             return await _electricityBills.Include(x => x.Provider).ToListAsync();
-        }
-
-        public Task<ElectricityBill> GetByIdAsync(Guid id)
-        {
-            return _electricityBills.FindAsync(id);
         }
 
         public async Task<IEnumerable<ElectricityBill>> GetElectricityBillsByCreatedById(Guid id)

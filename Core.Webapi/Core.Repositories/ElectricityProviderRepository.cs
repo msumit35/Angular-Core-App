@@ -9,25 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class ElectricityProviderRepository : IElectricityProviderRepository
+    public class ElectricityProviderRepository : Repository<ElectricityProvider>, IElectricityProviderRepository
     {
-        private readonly CoreContext _context;
-        private readonly DbSet<ElectricityProvider> _electricityProviders;
-
         public ElectricityProviderRepository(CoreContext context)
+            : base(context)
         {
-            _context = context;
-            _electricityProviders = _context.ElectricityProviders;
-        }
-
-        public async Task<IEnumerable<ElectricityProvider>> GetAllAsync()
-        {
-            return await _electricityProviders.ToListAsync();
-        }
-
-        public async Task<ElectricityProvider> GetByIdAsync(Guid id)
-        {
-            return await _electricityProviders.FindAsync(id);
         }
     }
 }

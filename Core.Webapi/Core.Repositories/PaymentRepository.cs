@@ -11,28 +11,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class PaymentRepository : IPaymentRepository
+    public class PaymentRepository : Repository<Payment>, IPaymentRepository
     {
-        private readonly CoreContext _context;
         private readonly DbSet<Payment> _payments;
 
         public PaymentRepository(CoreContext context)
+            : base(context)
         {
-            _context = context;
             _payments = context.Payments;
         }
 
-        public async Task<IEnumerable<Payment>> GetAllAsync()
+        public override async Task<IEnumerable<Payment>> GetAllAsync()
         {
             return await _payments
                             .Include(x => x.PaymentStatus)
                             .Include(x => x.PaymentMode)
                             .ToListAsync();
-        }
-
-        public async Task<Payment> GetByIdAsync(Guid id)
-        {
-            return await _payments.FindAsync(id);
         }
 
         public async Task<IEnumerable<Payment>> GetPaymentsByCreatedById(Guid id)

@@ -9,25 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class ServiceProviderRepository : IServiceProviderRepository
+    public class ServiceProviderRepository : Repository<ServiceProvider>, IServiceProviderRepository
     {
-        private readonly CoreContext _context;
-        private readonly DbSet<ServiceProvider> _serviceProviders;
-
         public ServiceProviderRepository(CoreContext context)
+            : base(context)
         {
-            _context = context;
-            _serviceProviders = context.ServiceProviders;
-        }
-
-        public async Task<IEnumerable<ServiceProvider>> GetAllAsync()
-        {
-            return await _serviceProviders.ToListAsync();
-        }
-
-        public async Task<ServiceProvider> GetByIdAsync(Guid id)
-        {
-            return await _serviceProviders.FindAsync(id);
         }
     }
 }
