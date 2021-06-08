@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IPaymentModeRepository : IRepository<PaymentMode>
+    public interface IPaymentModeRepository : ICrudRepository<PaymentMode>
     {
     }
 }

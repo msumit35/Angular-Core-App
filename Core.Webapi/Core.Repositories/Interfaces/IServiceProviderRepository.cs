@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Core.Repositories.Interfaces
 {
-    public interface IServiceProviderRepository : IRepository<ServiceProvider>
+    public interface IServiceProviderRepository : ICrudRepository<ServiceProvider>
     {
     }
 }

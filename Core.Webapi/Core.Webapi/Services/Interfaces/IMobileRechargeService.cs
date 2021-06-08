@@ -14,5 +14,11 @@ namespace Core.Webapi.Services.Interfaces
         Task<IEnumerable<MobileRechargeType>> GetRechargeTypesAsync();
 
         Task<IEnumerable<MobileRechargeBillModel>> GetMobileRechargeBillsAsync();
+
+        Task<ServiceProvider> CreateServiceProviderAsync(MasterModel model);
+
+        Task UpdateServiceProviderAsync(Guid id, MasterModel model);
+
+        Task RemoveServiceProviderAsync(Guid id);
     }
 }

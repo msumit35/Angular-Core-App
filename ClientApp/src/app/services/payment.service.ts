@@ -19,4 +19,25 @@ export class PaymentService {
                 return response.Data;
             }));
     }
+
+    CreatePaymentMode(model: any) {
+        return this._http.post(BaseUrl + this.controller + '/Modes', model)
+            .pipe(map((response: any) => {
+                return response;
+            }));
+    }
+
+    EditPaymentMode(id: string, model: any) {
+        return this._http.put(BaseUrl + this.controller + '/Modes/' + id, model)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    DeletePaymentMode(id: string) {
+        return this._http.delete(BaseUrl + this.controller + '/Modes/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
 }

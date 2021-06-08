@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class ServiceProvider : MasterEntityBase
+    public class ServiceProvider : MasterCrudEntityBase
     {
     }
 }

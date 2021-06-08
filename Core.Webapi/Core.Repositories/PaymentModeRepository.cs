@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class PaymentModeRepository : Repository<PaymentMode>, IPaymentModeRepository
+    public class PaymentModeRepository : CrudRepository<PaymentMode>, IPaymentModeRepository
     {
         public PaymentModeRepository(CoreContext context)
             : base(context)

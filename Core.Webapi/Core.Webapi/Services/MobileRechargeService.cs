@@ -1,4 +1,5 @@
-﻿using Core.Common.Interfaces;
+﻿using System;
+using Core.Common.Interfaces;
 using Core.Entities;
 using Core.Repositories.Interfaces;
 using Core.Webapi.Models;
@@ -21,11 +22,7 @@ namespace Core.Webapi.Services
             _userContext = userContext;
         }
 
-        public Task<IEnumerable<ServiceProvider>> GetServiceProvidersAsync()
-        {
-            return _unitOfWork.ServiceProviderRepository.GetAllAsync();
-        }
-
+        #region Mobile Recharge
         public Task<IEnumerable<MobileRechargeType>> GetRechargeTypesAsync()
         {
             return _unitOfWork.MobileRechargeTypeRepository.GetAllAsync();
@@ -77,5 +74,46 @@ namespace Core.Webapi.Services
             await _unitOfWork.MobileRechargeBillRepository.Create(mobileRecharge);
             await _unitOfWork.SaveChangesAsync();
         }
+        #endregion
+
+        #region Service Provider
+        public Task<IEnumerable<ServiceProvider>> GetServiceProvidersAsync()
+        {
+            return _unitOfWork.ServiceProviderRepository.GetAllAsync();
+        }
+
+        public async Task<ServiceProvider> CreateServiceProviderAsync(MasterModel model)
+        {
+            var entity = new ServiceProvider()
+            {
+                Name = model.Name,
+                Description = model.Description
+            };
+
+            return await _unitOfWork.ServiceProviderRepository.Create(entity);
+        }
+
+        public async Task UpdateServiceProviderAsync(Guid id, MasterModel model)
+        {
+            var entity = await _unitOfWork.ServiceProviderRepository.GetByIdAsync(id);
+
+            if (entity == null)
+            {
+                throw new Exception($"Provider not found.");
+            }
+
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+
+            await _unitOfWork.ServiceProviderRepository.UpdateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task RemoveServiceProviderAsync(Guid id)
+        {
+            await _unitOfWork.ServiceProviderRepository.RemoveAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

@@ -12,5 +12,11 @@ namespace Core.Webapi.Services.Interfaces
         Task<IEnumerable<ElectricityProvider>> GetElectricityProviders();
 
         Task<IEnumerable<ElectricityBillModel>> GetElectricityBills();
+
+        Task<ElectricityProvider> CreateElectricityProviderAsync(MasterModel model);
+
+        Task UpdateElectricityProviderAsync(Guid id, MasterModel model);
+
+        Task RemoveElectricityProviderAsync(Guid id);
     }
 }

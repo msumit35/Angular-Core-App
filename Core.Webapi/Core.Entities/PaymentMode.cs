@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public class PaymentMode : MasterEntityBase
+    public class PaymentMode : MasterCrudEntityBase
     {
     }
 }

@@ -1,4 +1,5 @@
-﻿using Core.Common.Interfaces;
+﻿using System;
+using Core.Common.Interfaces;
 using Core.Entities;
 using Core.Repositories.Interfaces;
 using Core.Webapi.Models;
@@ -21,11 +22,7 @@ namespace Core.Webapi.Services
             _userContext = userContext;
         }
 
-        public async Task<IEnumerable<ElectricityProvider>> GetElectricityProviders()
-        {
-            return await _unitOfWork.ElectricityProviderRepository.GetAllAsync();
-        }
-
+        #region Electricity Bills
         public async Task<IEnumerable<ElectricityBillModel>> GetElectricityBills()
         {
             var bills = await _unitOfWork.ElectricityBillRepository.GetElectricityBillsByCreatedById(_userContext.UserId);
@@ -45,7 +42,6 @@ namespace Core.Webapi.Services
 
             return list;
         }
-
         protected override async Task ProcessPaymentAsync(PaymentModel model, Payment payment)
         {
             var electricityBill = new ElectricityBill
@@ -68,5 +64,46 @@ namespace Core.Webapi.Services
 
             await _unitOfWork.SaveChangesAsync();
         }
+        #endregion
+
+        #region Electricity Providers
+        public async Task<IEnumerable<ElectricityProvider>> GetElectricityProviders()
+        {
+            return await _unitOfWork.ElectricityProviderRepository.GetAllAsync();
+        }
+
+        public async Task<ElectricityProvider> CreateElectricityProviderAsync(MasterModel model)
+        {
+            var entity = new ElectricityProvider()
+            {
+                Name = model.Name,
+                Description = model.Description
+            };
+
+            return await _unitOfWork.ElectricityProviderRepository.Create(entity);
+        }
+
+        public async Task UpdateElectricityProviderAsync(Guid id, MasterModel model)
+        {
+            var entity = await _unitOfWork.ElectricityProviderRepository.GetByIdAsync(id);
+
+            if (entity == null)
+            {
+                throw new Exception($"Provider not found.");
+            }
+
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+
+            await _unitOfWork.ElectricityProviderRepository.UpdateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task RemoveElectricityProviderAsync(Guid id)
+        {
+            await _unitOfWork.ElectricityProviderRepository.RemoveAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        #endregion
     }
 }

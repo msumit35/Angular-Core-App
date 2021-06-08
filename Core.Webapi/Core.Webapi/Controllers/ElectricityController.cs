@@ -107,5 +107,71 @@ namespace Core.Webapi.Controllers
                 });
             }
         }
+
+        [HttpPost("Providers")]
+        public async Task<IActionResult> PostElectricityProvider(MasterModel provider)
+        {
+            try
+            {
+                var entity = await _electricityService.CreateElectricityProviderAsync(provider);
+
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = new { TransactionId = entity.Id }
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    Status = 500,
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpPut("Providers/{id}")]
+        public async Task<IActionResult> UpdateElectricityProvider(Guid id, [FromBody] MasterModel model)
+        {
+            try
+            {
+                await _electricityService.UpdateElectricityProviderAsync(id, model);
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
+
+        [HttpDelete("Providers/{id}")]
+        public async Task<IActionResult> DeleteElectricityProvider(Guid id)
+        {
+            try
+            {
+                await _electricityService.RemoveElectricityProviderAsync(id);
+
+                return Ok(new Response
+                {
+                    Status = 200,
+                    Data = "success"
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response
+                {
+                    ErrorMessage = "Something went wrong"
+                });
+            }
+        }
     }
 }

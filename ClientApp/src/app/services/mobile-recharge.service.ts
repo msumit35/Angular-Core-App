@@ -40,4 +40,25 @@ export class MobileService {
                 return response;
             }));
     }
+
+    CreateServiceProvider(model: any) {
+        return this._http.post(BaseUrl + this.controller + '/ServiceProviders', model)
+            .pipe(map((response: any) => {
+                return response;
+            }));
+    }
+
+    EditServiceProvider(id: string, model: any) {
+        return this._http.put(BaseUrl + this.controller + '/ServiceProviders/' + id, model)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    DeleteServiceProvider(id: string) {
+        return this._http.delete(BaseUrl + this.controller + '/ServiceProviders/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
 }

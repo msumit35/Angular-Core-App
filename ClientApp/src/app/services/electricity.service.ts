@@ -34,4 +34,25 @@ export class ElectricityService {
                 return response;
             }));
     }
+
+    CreateElectricityProvider(model: any) {
+        return this._http.post(BaseUrl + this.controller + '/Providers', model)
+            .pipe(map((response: any) => {
+                return response;
+            }));
+    }
+
+    EditElectricityProvider(id: string, model: any) {
+        return this._http.put(BaseUrl + this.controller + '/Providers/' + id, model)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
+
+    DeleteElectricityProvider(id: string) {
+        return this._http.delete(BaseUrl + this.controller + '/Providers/' + id)
+            .pipe(map((response: any) => {
+                return response.Data;
+            }));
+    }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
 {
-    public class ElectricityProviderRepository : Repository<ElectricityProvider>, IElectricityProviderRepository
+    public class ElectricityProviderRepository : CrudRepository<ElectricityProvider>, IElectricityProviderRepository
     {
         public ElectricityProviderRepository(CoreContext context)
             : base(context)

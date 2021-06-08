@@ -1,7 +1,11 @@
 ﻿CREATE TABLE [dbo].[ElectricityProviders](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
- [Description] NVARCHAR(100) NULL, 
+	[Description] NVARCHAR(100) NULL, 
+ 	[CreatedById] [uniqueidentifier] NOT NULL,
+	[CreatedOn] [datetimeoffset](7) NOT NULL,
+	[LastUpdatedOn] [datetimeoffset](7) NULL,
+	[RemovedOn] [datetimeoffset](7) NULL,
     CONSTRAINT [PK_ElectricityProviders] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
